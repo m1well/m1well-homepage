@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, minimum-scale=1, initial-scale=1"
     />
-    <title>My Digital Handshake - Why I Built My Portfolio Page</title>
+    <title>Tired of Auth Overkill? Meet idently - Simple, Stateless Deno Identity Gets Smarter</title>
     <meta name="description" content="m1well developer portfolio" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link
@@ -108,7 +108,7 @@
 <section>
   <div class="mw-container">
     <div class="mw-blog-post mw-mt-9">
-      <h2 class="mw-blog-post-title">My Digital Handshake - Why I Built My Portfolio Page</h2>
+      <h2 class="mw-blog-post-title">Tired of Auth Overkill? Meet idently - Simple, Stateless Deno Identity Gets Smarter</h2>
 
       <div class="mw-blog-post-header">
         <div class="mw-blog-post-header-icon">
@@ -117,7 +117,7 @@
         <div class="mw-blog-post-meta">
           <div class="mw-blog-post-meta-item">
             <i class="far fa-calendar"></i>
-            <span>April 25, 2025</span>
+            <span>May 4, 2025</span>
           </div>
           <div class="mw-blog-post-meta-item">
             <i class="far fa-user"></i>
@@ -125,29 +125,46 @@
           </div>
           <div class="mw-blog-post-meta-item">
             <i class="far fa-clock"></i>
-            <span>3 mins read</span>
+            <span>4 mins read</span>
           </div>
         </div>
       </div>
       <img
-        src="/assets/images/header_logo.png"
+        src="/assets/images/blog_idently.png"
         alt="Blog post image"
         class="mw-blog-post-featured-image"
-      /><div class="mw-blog-post-content"><p>My portfolio page at m1well.com isn't just a list of skills or a digital resume - it's my professional statement, a carefully crafted space designed to tell you who I am as a developer.</p>
-<h3>Who Am I</h3>
-<p>As the page highlights right away, I'm a Fullstack Developer with over ten years of experience under my belt, primarily focused on building robust, scalable enterprise applications. My core toolkit revolves around Java/Spring Boot for the backend and Angular for the frontend, but my skills extend into databases like MySQL and Postgres, messaging with RabbitMQ, and the essential DevOps practices using tools like Docker, Kubernetes, and Jenkins. More than just listing technologies, I wanted the page to reflect my core values: pragmatism, a commitment to clean code and domain-driven design, and a belief in agile methodologies.</p>
-<h3>Why This Page?</h3>
-<p>I created this portfolio to serve as a central hub – a place where potential employers, collaborators, or anyone curious can get a comprehensive understanding of my professional identity. It brings together my experience, a detailed (and honest!) breakdown of my technical skills, showcases my personal projects, and even offers a glimpse into my thoughts through the blog section. Think of it as my digital handshake, offering a deeper introduction than a simple CV ever could.</p>
-<h4>What It Says About Me</h4>
-<p>I hope the overall impression is that of a seasoned, meticulous, and engaged developer. The detailed skills section, complete with proficiency levels, is my attempt at transparency. Highlighting personal projects like <code>MaverickWave</code> (the CSS framework powering this very site!), <code>Idently</code>, and <code>versions</code> is crucial because they demonstrate my passion for coding extends beyond the 9-to-5 and my desire to contribute back to the community – something reinforced by the links to my GitHub and Dev.to profiles. <em>Furthermore, building this portfolio itself was an opportunity to learn and apply something new: I chose to develop it using Eleventy (11ty), a fantastic JavaScript-based static site generator, along with Nunjucks for templating.</em> The clean layout, the use of my own framework, and even the disclaimers about privacy and employer separation are all intentional choices aimed at projecting professionalism and attention to detail.</p>
-<h3>Final Thoughts</h3>
-<p>Ultimately, I want visitors to see me not just as someone who writes code, but as a well-rounded software craftsman focused on delivering value and sharing knowledge within the developer community.</p>
+      /><div class="mw-blog-post-content"><p>Ever find yourself needing to protect a small internal tool, an admin panel, or a simple API? You reach for authentication solutions, and suddenly you're wrestling with OAuth flows, complex SDKs, or heavyweight identity providers. It often feels like bringing a bazooka to a knife fight. I've been there, and that frustration is exactly why <strong>idently</strong> was born.</p>
+<p>At its heart, <strong>idently</strong> is my take on dead-simple, stateless authentication built with Deno. The core idea? Forget emails and passwords. Just give users a secret code. They send the code, they get a JSON Web Token (JWT) back. Simple. User data lives in a straightforward <code>users.json</code> file - easy to manage, easy to understand.</p>
+<h3>From Basic Need to Added Flexibility</h3>
+<p>Initially, <strong>idently</strong> focused purely on that core loop: code in, JWT out. But as with any tool you start using, refinements become obvious.
+First, sending the secret code directly in the request body felt a little… exposed. While HTTPS encrypts the traffic, moving the code to a custom header (<code>X-Code-Header</code> by default) felt like better hygiene. A small change, but a step in the right direction.</p>
+<p>Then came the token lifetimes. Sometimes you need a token that expires quickly (like 3 minutes for a quick action), other times you need something longer-lasting (maybe 5 hours for a work session). So, <strong>idently</strong> gained two distinct endpoints: /token/short and /token/long, each issuing a JWT with a configurable expiry time set via environment variables (<code>TOKEN_SHORT_EXPIRES_IN_S</code>, <code>TOKEN_LONG_EXPIRES_IN_S</code>).</p>
+<h3>Adding a Layer of Control: Audience Checks</h3>
+<p>The latest evolution addresses a common scenario: what if you have multiple applications using <strong>idently</strong>, but you want to ensure a token generated for accessing the 'AdminPanel' can't be used to hit the 'ReportingAPI'?</p>
+<p>This led to the introduction of an <code>assignedApps</code> array within the <code>users.json</code> file for each user. Now, when requesting a token via /token/short or /token/long, the client must also send an <code>X-Audience-Header</code> specifying which application ('audience') the token is intended for.</p>
+<pre><code class="language-json">// Example users.json entry
+{
+  &quot;code&quot;: &quot;supersecretcode123&quot;,
+  &quot;firstName&quot;: &quot;John&quot;,
+  &quot;lastName&quot;: &quot;Stone&quot;,
+  &quot;systemRole&quot;: &quot;admin&quot;,
+  &quot;availableSince&quot;: &quot;2025-04-02&quot;,
+  &quot;assignedApps&quot;: [&quot;AdminPanel&quot;, &quot;UserManagementTool&quot;]
+}
+</code></pre>
+<p><strong>idently</strong> checks if the requested audience in the header is actually listed in the user's assignedApps. If it's not a match, no token is issued. Furthermore, the /token/verify endpoint now also requires the X-Audience-Header to ensure the token being verified was actually intended for that specific application. It adds a simple but effective layer of authorization on top of the authentication.</p>
+<h3>Still Simple at Heart</h3>
+<p>Despite these additions, <strong>idently</strong> remains true to its core philosophy. It's still stateless, configured primarily via environment variables, runs in a minimal Docker container (~60MB), and leverages the power and simplicity of Deno.
+Getting started locally is as easy as cloning the repo, copying .env.example to .env, tweaking your settings, and running <code>deno task start</code>. An example Kubernetes deployment file is also included.</p>
+<h3>Is idently for You?</h3>
+<p>If you need robust, enterprise-grade authentication with complex user management, <strong>idently</strong> isn't the right fit. But if you're looking for a no-fuss, code-based authentication layer for your internal tools or simple APIs, and appreciate the elegance of Deno, give <strong>idently</strong> a look.</p>
+<p>Check out the project on GitHub: <a href="https://github.com/m1well/idently">GitHub repository</a></p>
 </div>
 
       <div class="mw-blog-post-footer">
         
         <a
-          href="/tired-of-auth-overkill-meet-idently-simple-stateless-deno-identity-gets-smarter/"
+          href="/maverickwave-i-finally-published-my-own-css-framework/"
           class="mw-btn mw-blog-post-footer-button"
         >
           <i class="fas fa-arrow-left"></i>
@@ -157,7 +174,7 @@
         <a href="/" class="mw-btn mw-btn-primary">Back to Blog</a>
         
         <a
-          href="/maverickwave-i-finally-published-my-own-css-framework/"
+          href="/my-digital-handshake-why-i-built-my-portfolio-page/"
           class="mw-btn mw-blog-post-footer-button next"
         >
           <i class="fas fa-arrow-right"></i>
