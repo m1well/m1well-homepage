@@ -125,7 +125,7 @@
           </div>
           <div class="mw-blog-post-meta-item">
             <i class="far fa-clock"></i>
-            <span>4 mins read</span>
+            <span>5 mins read</span>
           </div>
         </div>
       </div>
@@ -153,6 +153,18 @@ First, sending the secret code directly in the request body felt a little… exp
 }
 </code></pre>
 <p><strong>idently</strong> checks if the requested audience in the header is actually listed in the user's assignedApps. If it's not a match, no token is issued. Furthermore, the /token/verify endpoint now also requires the X-Audience-Header to ensure the token being verified was actually intended for that specific application. It adds a simple but effective layer of authorization on top of the authentication.</p>
+<h3>Tailoring Your Tokens: Custom Attributes and Claims</h3>
+<p>Beyond basic identification and audience, often your applications need a bit more user-specific context directly within the JWT payload. Maybe it's a specific role within an app, a user ID from another system, or even a budget limit.<br>
+<strong>idently</strong> makes this easy. You can extend the User type in the TypeScript code with your own optional properties. For example, you might add <code>specificRole</code> or <code>budget</code>.</p>
+<pre><code class="language-typescript">// Example User type extension
+export interface User {
+  code: string;
+  firstName: string;
+  // ... other core properties
+  specificRole?: string; // &lt;-- Custom optional property
+  budget?: number; // &lt;-- Another custom optional property
+}
+</code></pre>
 <h3>Still Simple at Heart</h3>
 <p>Despite these additions, <strong>idently</strong> remains true to its core philosophy. It's still stateless, configured primarily via environment variables, runs in a minimal Docker container (~60MB), and leverages the power and simplicity of Deno.
 Getting started locally is as easy as cloning the repo, copying .env.example to .env, tweaking your settings, and running <code>deno task start</code>. An example Kubernetes deployment file is also included.</p>
