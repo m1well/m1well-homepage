@@ -1,0 +1,18 @@
+[
+  {
+    "title": "About",
+    "tag": "#about"
+  },
+  {
+    "title": "Skills",
+    "tag": "#skills"
+  },
+  {
+    "title": "Projects",
+    "tag": "#projects"
+  },
+  {
+    "title": "Blog",
+    "tag": "#blog"
+  }
+]

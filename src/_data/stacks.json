@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Fullstack Dev",
+    "text": "Developing microservices and full-stack web applications, leveraging Java (primarily Spring ecosystem) for backend systems and Angular for dynamic frontend interfaces",
+    "icon": "fas fa-code"
+  },
+  {
+    "name": "DB & Connections",
+    "text": "Managing persistence layers using relational databases (MySQL, Postgres), and architecting message-driven systems utilizing RabbitMQ for asynchronous communication",
+    "icon": "fas fa-database"
+  },
+  {
+    "name": "DevOps",
+    "text": "Automating deployment and orchestrating containerized applications in Docker and Kubernetes, naturally using Deno and Bash for scripting and automating related DevOps tasks",
+    "icon": "fas fa-server"
+  },
+  {
+    "name": "Tools",
+    "text": "Boosting development workflow through proficient use of tools, including IntelliJ IDEA for integrated development, Git for version control, Jenkins for CI/CD and Postman for API testing",
+    "icon": "fas fa-tools"
+  },
+  {
+    "name": "Concepts",
+    "text": "Applying established best practices for high-quality software delivery, utilizing Scrum for agile team collaboration, alongside Domain-Driven Design for complex business domains",
+    "icon": "fas fa-brain"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "name": "11ty"
+  },
+  {
+    "name": "Bitbucket"
+  },
+  {
+    "name": "Cloud Foundry"
+  },
+  {
+    "name": "CSS/SCSS"
+  },
+  {
+    "name": "DBeaver"
+  },
+  {
+    "name": "Gitlab CI"
+  },
+  {
+    "name": "Grafana"
+  },
+  {
+    "name": "Groovy"
+  },
+  {
+    "name": "Gulp"
+  },
+  {
+    "name": "JavaScript"
+  },
+  {
+    "name": "k3s"
+  },
+  {
+    "name": "Prometheus"
+  },
+  {
+    "name": "SonarQube"
+  }
+]
