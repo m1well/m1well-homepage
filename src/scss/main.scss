@@ -1,0 +1,7 @@
+@use 'customs';
+@forward 'fonts';
+
+:root {
+  --mw-font-family-base: 'Titillium Web', sans-serif;
+  --mw-font-family-heading: 'Titillium Web', sans-serif;
+}

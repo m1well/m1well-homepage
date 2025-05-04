@@ -1,0 +1,22 @@
+[
+  {
+    "link": "https://www.linkedin.com/in/michael-wellner",
+    "icon": "fab fa-linkedin"
+  },
+  {
+    "link": "https://github.com/m1well",
+    "icon": "fab fa-github"
+  },
+  {
+    "link": "https://www.xing.com/profile/Michael_Wellner5/",
+    "icon": "fab fa-xing"
+  },
+  {
+    "link": "https://dev.to/m1well",
+    "icon": "fab fa-dev"
+  },
+  {
+    "link": "mailto:info@m1well.com",
+    "icon": "fa fa-envelope"
+  }
+]
