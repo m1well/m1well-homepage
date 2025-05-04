@@ -1,0 +1,33 @@
+<div class="mw-container">
+  <div class="mw-logo">
+    <a href="/#home">
+      <img src="/assets/images/header_logo.png" alt="m1well" />
+    </a>
+  </div>
+
+  <div class="mw-header-actions">
+    <div class="mw-theme-toggle">
+      <div class="mw-theme-toggle-slider">
+        <div class="mw-theme-toggle-icon">
+          <i class="fas fa-moon"></i>
+        </div>
+      </div>
+    </div>
+
+    <button class="mw-menu-btn" type="button">
+      <span class="mw-menu-btn-burger"></span>
+    </button>
+
+    <nav class="mw-navbar">
+      <ul class="mw-navbar-list">
+        {% for section in sections %}
+        <li class="mw-navbar-item">
+          <a href="/{{ section.tag }}" class="mw-navbar-link"
+            >{{ section.title }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="mw-container">
+  <div class="mw-social-links">
+    {% for element in socialLinks %}
+    <a
+      href="{{ element.link }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
+      ><i class="{{ element.icon }}"></i
+    ></a>
+    {% endfor %}
+  </div>
+
+  <p class="mw-disclaimer">
+    <strong>Disclaimer</strong><br />
+    This is my personal developer portfolio website. All opinions, content, and
+    projects presented here are my own and do not represent the views or
+    positions of any current or previous employers.<br />
+    Built with
+    <a
+      href="https://www.11ty.dev"
+      target="_blank"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0"
+      >11ty</a
+    >
+    and my own CSS framework
+    <a
+      href="https://maverick-wave.m1well.com"
+      target="_blank"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0"
+      >MaverickWave</a
+    >.
+  </p>
+  <p class="mw-disclaimer">
+    <strong>Privacy Notice</strong><br />
+    This website is designed with privacy in mind. It does not use cookies,
+    tracking tools, or collect any personal data from visitors.<br />
+    A minimal counter increments a page view count on each visit - no IPs, no
+    user agents, no personal data are stored.
+  </p>
+  <p class="mw-disclaimer">
+    <strong>Credits</strong><br />
+    Hero background photo by
+    <a
+      href="https://unsplash.com/@windows"
+      target="_blank"
+      class="mw-link mw-btn-link mw-px-0 mw-py-0"
+      >Windows</a
+    >
+    on Unsplash.
+  </p>
+
+  <p class="mw-copyright">
+    &copy; <span>{% year %}</span> Copyright
+    <a
+      href="https://m1well.com"
+      target="_blank"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0"
+      >m1well</a
+    >
+  </p>
+
+  <p class="mw-last-updated">Last updated: <span>{% lastBuildDate %}</span></p>
+</div>

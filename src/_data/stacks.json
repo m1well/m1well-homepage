@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Fullstack Dev",
+    "text": "Building robust microservices and full-stack web applications using Java (primarily the Spring ecosystem) for scalable backends and Angular for responsive, dynamic frontends.",
+    "icon": "fas fa-code"
+  },
+  {
+    "name": "DB & Messaging",
+    "text": "Designing and managing persistence layers with relational databases like MySQL and Postgres, and implementing message-driven architectures using RabbitMQ for asynchronous communication.",
+    "icon": "fas fa-database"
+  },
+  {
+    "name": "DevOps",
+    "text": "Automating deployments and orchestrating containerized applications with Docker and Kubernetes, while leveraging Bash and Deno for scripting and DevOps workflows.",
+    "icon": "fas fa-server"
+  },
+  {
+    "name": "Tools",
+    "text": "Enhancing development efficiency through expert use of tools like IntelliJ IDEA, Git, Jenkins for CI/CD pipelines, and Postman for testing and debugging APIs.",
+    "icon": "fas fa-tools"
+  },
+  {
+    "name": "Concepts",
+    "text": "Driving software quality through clean code, agile practices (Scrum), and domain-driven design to effectively model complex business logic and ensure maintainability.",
+    "icon": "fas fa-brain"
+  }
+]
