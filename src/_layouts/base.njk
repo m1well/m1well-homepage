@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no,email=no,address=no,date=no"
+    />
+    <title>{{ title }}</title>
+    <meta name="description" content="m1well developer portfolio" />
+    {% include "favicons.njk" %}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/m1well/maverick-wave@v{{ maverickWaveVersion }}/maverick-wave.min.css"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+    <script src="https://cdn.jsdelivr.net/gh/m1well/maverick-wave@{{ maverickWaveVersion }}/maverick-wave.min.js"></script>
+  </head>
+  <body>
+    <header class="mw-header mw-localhost-indicator-activated">
+      <div class="mw-container">{% include "header.njk" %}</div>
+    </header>
+
+    <main class="mw-main">
+      {% block content %} {{ content | safe }} {% endblock %}
+    </main>
+
+    <footer class="mw-footer">{% include "footer.njk" %}</footer>
+  </body>
+  <script></script>
+  <script>
+    const isLocal = window.location.hostname === 'localhost';
+    if (!isLocal) {
+      const counterBaseRoute = 'https://vestigia.m1well.com/counters/m1well';
+      const pathname = window.location.pathname;
+      fetch(
+        `${counterBaseRoute}${pathname == '/' || pathname.startsWith('#') ? '/home' : pathname}`,
+        {
+          method: 'GET',
+          headers: {
+            'Vestigia-Header-Check': '938158',
+          },
+        }
+      ).catch((e) => {
+        console.warn('Counter failed', e);
+      });
+    }
+  </script>
+</html>

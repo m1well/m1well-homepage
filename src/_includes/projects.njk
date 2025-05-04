@@ -1,0 +1,42 @@
+<div class="mw-container">
+  <h2 class="mw-section-title">Recent Projects</h2>
+  <div class="mw-grid-2">
+    {% for project in projects %}
+    <div class="mw-card mw-card-content mw-card-lg">
+      {% if project.ribbon %}
+      <div class="mw-card-ribbon mw-card-addon-secondary">
+        {{ project.ribbon }}
+      </div>
+      {% endif %}
+      <div class="mw-card-img-contain">
+        <img src="{{ project.image }}" alt="{{ project.imageAlt }}" />
+      </div>
+      <div class="mw-card-body">
+        <h3 class="mw-card-title">{{ project.title }}</h3>
+        <p class="mw-card-text mw-my-1">{{ project.description1 }}</p>
+        <p class="mw-card-text mw-my-1">{{ project.description2 }}</p>
+        {% if project.tags and project.tags.length > 0 %}
+        <div class="mw-tags">
+          {% for tag in project.tags %}
+          <span class="mw-tags-item">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="mw-card-footer">
+          <a
+            href="{{ project.githubLink }}"
+            target="_blank"
+            class="mw-btn mw-btn-primary mw-btn-sm mw-btn-icon"
+          >
+            <i class="fab fa-github"></i>
+            View Code
+          </a>
+          <span class="mw-text-secondary"
+            >Last updated:<wbr /> {{ project.lastUpdated }}</span
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

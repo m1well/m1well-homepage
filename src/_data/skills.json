@@ -1,0 +1,63 @@
+[
+  {
+    "title": "Development",
+    "skills": [
+      { "name": "Java", "proficiency": 8 },
+      { "name": "TypeScript", "proficiency": 6 },
+      { "name": "SQL", "proficiency": 9 },
+      { "name": "Bash", "proficiency": 7 },
+      { "name": "Python", "proficiency": 3 }
+    ]
+  },
+  {
+    "title": "Frameworks & Libs",
+    "skills": [
+      { "name": "Spring Boot", "proficiency": 9 },
+      { "name": "Quarkus", "proficiency": 7 },
+      { "name": "Deno", "proficiency": 7 },
+      { "name": "Angular", "proficiency": 7 },
+      { "name": "Vue", "proficiency": 4 },
+      { "name": "React", "proficiency": 2 }
+    ]
+  },
+  {
+    "title": "Tools",
+    "skills": [
+      { "name": "IntelliJ IDEA", "proficiency": 9 },
+      { "name": "VS Code", "proficiency": 7 },
+      { "name": "Git", "proficiency": 10 },
+      { "name": "Jenkins", "proficiency": 8 },
+      { "name": "Maven / npm", "proficiency": 8 },
+      { "name": "Gitlab CI", "proficiency": 6 }
+    ]
+  },
+  {
+    "title": "Concepts",
+    "skills": [
+      { "name": "Scrum", "proficiency": 9 },
+      { "name": "Kanban", "proficiency": 8 },
+      { "name": "Microservices", "proficiency": 9 },
+      { "name": "CI/CD", "proficiency": 8 },
+      { "name": "Domain Driven Design", "proficiency": 6 },
+      { "name": "Clean Code", "proficiency": 8 }
+    ]
+  },
+  {
+    "title": "DB & Messaging",
+    "skills": [
+      { "name": "MySQL / MariaDB", "proficiency": 9 },
+      { "name": "Postgres", "proficiency": 8 },
+      { "name": "MongoDB", "proficiency": 2 },
+      { "name": "RabbitMQ", "proficiency": 6 }
+    ]
+  },
+  {
+    "title": "Infrastructure",
+    "skills": [
+      { "name": "Kubernetes / k3s", "proficiency": 6 },
+      { "name": "Docker", "proficiency": 9 },
+      { "name": "Nginx", "proficiency": 8 },
+      { "name": "Keycloak", "proficiency": 6 }
+    ]
+  }
+]

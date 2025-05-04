@@ -1,0 +1,38 @@
+# m1well
+
+My personal developer portfolio page, built with 11ty and github pages
+
+[m1well.com](http://m1well.com)
+
+## Development
+
+1. install dependencies
+
+```bash
+npm install
+```
+
+2. start dev server [http://localhost:8383](http://localhost:8383)
+
+```bash
+npm run start
+```
+
+## Contribution
+
+Contributions are welcome! Please ensure your code is clean and consistent.
+
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes.
+4. Format the code (`npm run format`).
+5. Commit using Conventional Commits format (e.g., `feat: add new button component`).
+6. Push your branch and create a Pull Request.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Author
+
+Created by [m1well](https://m1well.com)
