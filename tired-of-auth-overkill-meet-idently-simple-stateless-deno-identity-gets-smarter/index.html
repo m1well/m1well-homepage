@@ -137,11 +137,11 @@
 <p>At its heart, <strong>idently</strong> is my take on dead-simple, stateless authentication built with Deno. The core idea? Forget emails and passwords. Just give users a secret code. They send the code, they get a JSON Web Token (JWT) back. Simple. User data lives in a straightforward <code>users.json</code> file - easy to manage, easy to understand.</p>
 <h3>From Basic Need to Added Flexibility</h3>
 <p>Initially, <strong>idently</strong> focused purely on that core loop: code in, JWT out. But as with any tool you start using, refinements become obvious.
-First, sending the secret code directly in the request body felt a little… exposed. While HTTPS encrypts the traffic, moving the code to a custom header (<code>X-Code-Header</code> by default) felt like better hygiene. A small change, but a step in the right direction.</p>
+First, sending the secret code directly in the request body felt a little… exposed. While HTTPS encrypts the traffic, moving the code to a custom header (<code>Security-Code</code> by default) felt like better hygiene. A small change, but a step in the right direction.</p>
 <p>Then came the token lifetimes. Sometimes you need a token that expires quickly (like 3 minutes for a quick action), other times you need something longer-lasting (maybe 5 hours for a work session). So, <strong>idently</strong> gained two distinct endpoints: /token/short and /token/long, each issuing a JWT with a configurable expiry time set via environment variables (<code>TOKEN_SHORT_EXPIRES_IN_S</code>, <code>TOKEN_LONG_EXPIRES_IN_S</code>).</p>
 <h3>Adding a Layer of Control: Audience Checks</h3>
 <p>The latest evolution addresses a common scenario: what if you have multiple applications using <strong>idently</strong>, but you want to ensure a token generated for accessing the 'AdminPanel' can't be used to hit the 'ReportingAPI'?</p>
-<p>This led to the introduction of an <code>assignedApps</code> array within the <code>users.json</code> file for each user. Now, when requesting a token via /token/short or /token/long, the client must also send an <code>X-Audience-Header</code> specifying which application ('audience') the token is intended for.</p>
+<p>This led to the introduction of an <code>assignedApps</code> array within the <code>users.json</code> file for each user. Now, when requesting a token via /token/short or /token/long, the client must also send an <code>Source</code> specifying which application / source / 'audience' the token is intended for.</p>
 <pre><code class="language-json">// Example users.json entry
 {
   &quot;code&quot;: &quot;supersecretcode123&quot;,
@@ -152,7 +152,7 @@ First, sending the secret code directly in the request body felt a little… exp
   &quot;assignedApps&quot;: [&quot;AdminPanel&quot;, &quot;UserManagementTool&quot;]
 }
 </code></pre>
-<p><strong>idently</strong> checks if the requested audience in the header is actually listed in the user's assignedApps. If it's not a match, no token is issued. Furthermore, the /token/verify endpoint now also requires the X-Audience-Header to ensure the token being verified was actually intended for that specific application. It adds a simple but effective layer of authorization on top of the authentication.</p>
+<p><strong>idently</strong> checks if the requested source in the header is actually listed in the user's assignedApps. If it's not a match, no token is issued. Furthermore, the /token/verify endpoint now also requires the <code>Source</code> header to ensure the token being verified was actually intended for that specific application. It adds a simple but effective layer of authorization on top of the authentication.</p>
 <h3>Tailoring Your Tokens: Custom Attributes and Claims</h3>
 <p>Beyond basic identification and audience, often your applications need a bit more user-specific context directly within the JWT payload. Maybe it's a specific role within an app, a user ID from another system, or even a budget limit.<br>
 <strong>idently</strong> makes this easy. You can extend the User type in the TypeScript code with your own optional properties. For example, you might add <code>specificRole</code> or <code>budget</code>.</p>
