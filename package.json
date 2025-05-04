@@ -1,0 +1,23 @@
+{
+  "name": "m1well-homepage",
+  "version": "1.0.0",
+  "description": "My personal developer portfolio page, built with 11ty and github pages",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve --port=8383",
+    "build": "rimraf _site && eleventy",
+    "format": "prettier --write \"**/*.{scss,js,json,html,md,njk}\""
+  },
+  "keywords": [],
+  "author": "m1well",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-bundle": "^3.0.6",
+    "esbuild": "^0.25.3",
+    "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
+    "sass": "^1.87.0"
+  },
+  "type": "module"
+}

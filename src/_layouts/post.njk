@@ -1,0 +1,76 @@
+{% extends "../_layouts/base.njk" %} {% block content %} <br />
+{% set navigation = page | postNavigation(collections.blogPosts) %}
+
+<section>
+  <div class="mw-container">
+    <div class="mw-content">
+      <div class="mw-blog-post">
+        <h2 class="mw-blog-post-title">{{ title }}</h2>
+
+        <div class="mw-blog-post-header">
+          <div class="mw-blog-post-header-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="mw-blog-post-meta">
+            <div class="mw-blog-post-meta-item">
+              <i class="far fa-calendar"></i>
+              <span>{{ date | dateFilter }}</span>
+            </div>
+            <div class="mw-blog-post-meta-item">
+              <i class="far fa-user"></i>
+              <span>By {{ author }}</span>
+            </div>
+            <div class="mw-blog-post-meta-item">
+              <i class="far fa-clock"></i>
+              <span>{{ content | readingTime }}</span>
+            </div>
+          </div>
+        </div>
+
+        {%- if featuredImage %}
+        <img
+          src="{{ featuredImage }}"
+          alt="Blog post image"
+          class="mw-blog-post-featured-image"
+        />
+        {%- endif -%}
+
+        <div class="mw-blog-post-content-markdown">{{ content | safe }}</div>
+
+        <div class="mw-blog-post-footer">
+          {% if navigation.previous %}
+          <a
+            type="button"
+            onclick="location.href='{{ navigation.previous.url }}'"
+            class="mw-btn mw-blog-post-footer-button"
+          >
+            <i class="fas fa-arrow-left"></i>
+            <span>Previous Post</span>
+          </a>
+          {% else %}
+          <span></span>
+          {% endif %}
+          <a
+            type="button"
+            onclick="location.href='/'"
+            class="mw-btn mw-btn-primary"
+            >Back to Blog</a
+          >
+          {% if navigation.next %}
+          <button
+            type="button"
+            onclick="location.href='{{ navigation.next.url }}'"
+            class="mw-btn mw-blog-post-footer-button next"
+          >
+            <i class="fas fa-arrow-right"></i>
+            <span>Next Post</span>
+          </button>
+          {% else %}
+          <span></span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

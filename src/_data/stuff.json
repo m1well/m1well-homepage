@@ -1,0 +1,56 @@
+[
+  {
+    "name": "11ty"
+  },
+  {
+    "name": "Affinity Designer"
+  },
+  {
+    "name": "ArchUnit"
+  },
+  {
+    "name": "Bitbucket"
+  },
+  {
+    "name": "Cloud Foundry"
+  },
+  {
+    "name": "DBeaver"
+  },
+  {
+    "name": "Grafana"
+  },
+  {
+    "name": "Groovy"
+  },
+  {
+    "name": "Gulp"
+  },
+  {
+    "name": "JavaScript"
+  },
+  {
+    "name": "JPA"
+  },
+  {
+    "name": "JUnit"
+  },
+  {
+    "name": "k3s"
+  },
+  {
+    "name": "Liquibase"
+  },
+  {
+    "name": "OAuth2"
+  },
+  {
+    "name": "Postman"
+  },
+  {
+    "name": "Prometheus"
+  },
+  {
+    "name": "SonarQube"
+  }
+]
