@@ -1,0 +1,27 @@
+name: Deploy GH Pages
+
+on:
+  push: 
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # checkout the branch
+      - uses: actions/checkout@v3
+
+      # install the project and to build the page
+      - name: npm ci & build
+        uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npm run build
+
+      # deploy the content of _site to the branch gh-pages
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # this line is needed for the action to be able to push something to your repository
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
