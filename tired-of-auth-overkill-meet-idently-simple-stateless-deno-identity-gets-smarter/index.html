@@ -235,6 +235,8 @@ Getting started locally is as easy as cloning the repo, copying .env.example to 
     <strong>Privacy Notice</strong><br />
     This website is designed with privacy in mind. It does not use cookies,
     tracking tools, or collect any personal data from visitors.<br />
+    A minimal counter increments a page view count on each visit – no IPs, no
+    user agents, no personal data are stored.<br />
     Built with
     <a
       href="https://www.11ty.dev"
@@ -272,8 +274,27 @@ Getting started locally is as easy as cloning the repo, copying .env.example to 
     >
   </p>
 
-  <p class="mw-last-updated">Last updated: <span>2025-05-04</span></p>
+  <p class="mw-last-updated">Last updated: <span>2025-05-05</span></p>
 </div>
 </footer>
   </body>
+  <script></script>
+  <script>
+    const isLocal = window.location.hostname === 'localhost';
+    if (!isLocal) {
+      const counterBaseRoute = 'https://vestigia.m1well.com/counters/m1well';
+      const pathname = window.location.pathname;
+      fetch(
+        `${counterBaseRoute}${pathname == '/' || pathname.startsWith('#') ? '/home' : pathname}`,
+        {
+          method: 'GET',
+          headers: {
+            'Vestigia-Header-Check': '938158',
+          },
+        }
+      ).catch((e) => {
+        console.warn('Counter failed', e);
+      });
+    }
+  </script>
 </html>
