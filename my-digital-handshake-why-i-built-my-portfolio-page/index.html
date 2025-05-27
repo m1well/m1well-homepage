@@ -48,67 +48,69 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/m1well/maverick-wave@v1.21.0/maverick-wave.min.css"
+      href="https://cdn.jsdelivr.net/gh/m1well/maverick-wave@v1.21.7/maverick-wave.min.css"
     />
     <link rel="stylesheet" href="/css/main.css" />
-    <script src="https://cdn.jsdelivr.net/gh/m1well/maverick-wave@1.21.0/maverick-wave.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/m1well/maverick-wave@1.21.7/maverick-wave.min.js"></script>
   </head>
   <body>
     <header class="mw-header mw-localhost-indicator-activated">
-      <div class="mw-container"><div class="mw-logo">
-  <a href="/#home">
-    <img src="/assets/images/header_logo.png" alt="m1well" />
-  </a>
-</div>
+      <div class="mw-container">
+  <div class="mw-logo">
+    <a href="/#home">
+      <img src="/assets/images/header_logo.png" alt="m1well" />
+    </a>
+  </div>
 
-<div class="mw-header-actions">
-  <div class="mw-theme-toggle">
-    <div class="mw-theme-toggle-slider">
-      <i class="fas fa-moon"></i>
+  <div class="mw-header-actions">
+    <div class="mw-theme-toggle">
+      <div class="mw-theme-toggle-slider">
+        <i class="fas fa-moon"></i>
+      </div>
     </div>
-  </div>
 
-  <div class="mw-menu-btn">
-    <div class="mw-menu-btn-burger"></div>
-  </div>
+    <div class="mw-menu-btn">
+      <div class="mw-menu-btn-burger"></div>
+    </div>
 
-  <nav class="mw-navbar">
-    <ul class="mw-navbar-list">
-      
-      <li class="mw-navbar-item">
-        <a href="/#about" class="mw-navbar-link"
-          >About</a
-        >
-      </li>
-      
-      <li class="mw-navbar-item">
-        <a href="/#journey" class="mw-navbar-link"
-          >Journey</a
-        >
-      </li>
-      
-      <li class="mw-navbar-item">
-        <a href="/#skills" class="mw-navbar-link"
-          >Skills</a
-        >
-      </li>
-      
-      <li class="mw-navbar-item">
-        <a href="/#projects" class="mw-navbar-link"
-          >Projects</a
-        >
-      </li>
-      
-      <li class="mw-navbar-item">
-        <a href="/#blog" class="mw-navbar-link"
-          >Blog</a
-        >
-      </li>
-      
-    </ul>
-  </nav>
+    <nav class="mw-navbar">
+      <ul class="mw-navbar-list">
+        
+        <li class="mw-navbar-item">
+          <a href="/#about" class="mw-navbar-link"
+            >About</a
+          >
+        </li>
+        
+        <li class="mw-navbar-item">
+          <a href="/#journey" class="mw-navbar-link"
+            >Journey</a
+          >
+        </li>
+        
+        <li class="mw-navbar-item">
+          <a href="/#skills" class="mw-navbar-link"
+            >Skills</a
+          >
+        </li>
+        
+        <li class="mw-navbar-item">
+          <a href="/#projects" class="mw-navbar-link"
+            >Projects</a
+          >
+        </li>
+        
+        <li class="mw-navbar-item">
+          <a href="/#blog" class="mw-navbar-link"
+            >Blog</a
+          >
+        </li>
+        
+      </ul>
+    </nav>
+  </div>
 </div>
-</div>
+
     </header>
 
     <main class="mw-main">
@@ -158,22 +160,29 @@
         <div class="mw-blog-post-footer">
           
           <a
-            href="/tired-of-auth-overkill-meet-idently-simple-stateless-deno-identity-gets-smarter/"
+            type="button"
+            onclick="location.href='/tired-of-auth-overkill-meet-idently-simple-stateless-deno-identity-gets-smarter/'"
             class="mw-btn mw-blog-post-footer-button"
           >
             <i class="fas fa-arrow-left"></i>
             <span>Previous Post</span>
           </a>
           
-          <a href="/" class="mw-btn mw-btn-primary">Back to Blog</a>
-          
           <a
-            href="/maverickwave-i-finally-published-my-own-css-framework/"
+            type="button"
+            onclick="location.href='/'"
+            class="mw-btn mw-btn-primary"
+            >Back to Blog</a
+          >
+          
+          <button
+            type="button"
+            onclick="location.href='/maverickwave-i-finally-published-my-own-css-framework/'"
             class="mw-btn mw-blog-post-footer-button next"
           >
             <i class="fas fa-arrow-right"></i>
             <span>Next Post</span>
-          </a>
+          </button>
           
         </div>
       </div>
@@ -186,23 +195,43 @@
     <footer class="mw-footer"><div class="mw-container">
   <div class="mw-social-links">
     
-    <a href="https://www.linkedin.com/in/michael-wellner" target="_blank" rel="noopener noreferrer"
+    <a
+      href="https://www.linkedin.com/in/michael-wellner"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
       ><i class="fab fa-linkedin"></i
     ></a>
     
-    <a href="https://github.com/m1well" target="_blank" rel="noopener noreferrer"
+    <a
+      href="https://github.com/m1well"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
       ><i class="fab fa-github"></i
     ></a>
     
-    <a href="https://www.xing.com/profile/Michael_Wellner5/" target="_blank" rel="noopener noreferrer"
+    <a
+      href="https://www.xing.com/profile/Michael_Wellner5/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
       ><i class="fab fa-xing"></i
     ></a>
     
-    <a href="https://dev.to/m1well" target="_blank" rel="noopener noreferrer"
+    <a
+      href="https://dev.to/m1well"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
       ><i class="fab fa-dev"></i
     ></a>
     
-    <a href="mailto:info@m1well.com" target="_blank" rel="noopener noreferrer"
+    <a
+      href="mailto:info@m1well.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
       ><i class="fa fa-envelope"></i
     ></a>
     
@@ -257,7 +286,7 @@
     >
   </p>
 
-  <p class="mw-last-updated">Last updated: <span>2025-05-23</span></p>
+  <p class="mw-last-updated">Last updated: <span>2025-05-27</span></p>
 </div>
 </footer>
   </body>
