@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no,email=no,address=no,date=no"
+    />
+    <title>Data-Oriented Programming in Java - More Data, Less Magic</title>
+    <meta name="description" content="m1well developer portfolio" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="48x48"
+  href="/favicon/favicon-48x48.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/favicon/apple-touch-icon.png"
+/>
+<link rel="manifest" href="/favicon/site.webmanifest" />
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+<meta name="theme-color" content="#ffffff" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/m1well/maverick-wave@v2.4.0/maverick-wave.min.css"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+    <script src="https://cdn.jsdelivr.net/gh/m1well/maverick-wave@2.4.0/maverick-wave.min.js"></script>
+  </head>
+  <body>
+    <header class="mw-header mw-localhost-indicator-activated">
+      <div class="mw-container">
+  <div class="mw-logo">
+    <a href="/#home">
+      <img src="/assets/images/header_logo.png" alt="m1well" />
+    </a>
+  </div>
+
+  <div class="mw-header-actions">
+    <nav class="mw-navbar">
+      <ul class="mw-navbar-list mw-gap-7">
+        
+        <li class="mw-navbar-item">
+          <a href="/#about" class="mw-navbar-link"
+            >About</a
+          >
+        </li>
+        
+        <li class="mw-navbar-item">
+          <a href="/#journey" class="mw-navbar-link"
+            >Journey</a
+          >
+        </li>
+        
+        <li class="mw-navbar-item">
+          <a href="/#skills" class="mw-navbar-link"
+            >Skills</a
+          >
+        </li>
+        
+        <li class="mw-navbar-item">
+          <a href="/#projects" class="mw-navbar-link"
+            >Projects</a
+          >
+        </li>
+        
+        <li class="mw-navbar-item">
+          <a href="/#blog" class="mw-navbar-link"
+            >Blog</a
+          >
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="mw-theme-toggle mw-ml-5">
+      <div class="mw-theme-toggle-slider">
+        <div class="mw-theme-toggle-icon">
+          <i class="fas fa-moon"></i>
+        </div>
+      </div>
+    </div>
+
+    <button class="mw-menu-btn" type="button">
+      <span class="mw-menu-btn-burger"></span>
+    </button>
+  </div>
+</div>
+
+    </header>
+
+    <main class="mw-main">
+       <br />
+
+
+<section>
+  <div class="mw-container">
+    <div class="mw-content">
+      <div class="mw-blog-post">
+        <h2 class="mw-blog-post-title">Data-Oriented Programming in Java - More Data, Less Magic</h2>
+
+        <div class="mw-blog-post-header">
+          <div class="mw-blog-post-header-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="mw-blog-post-meta">
+            <div class="mw-blog-post-meta-item">
+              <i class="far fa-calendar"></i>
+              <span>June 14, 2025</span>
+            </div>
+            <div class="mw-blog-post-meta-item">
+              <i class="far fa-user"></i>
+              <span>By Michael Wellner</span>
+            </div>
+            <div class="mw-blog-post-meta-item">
+              <i class="far fa-clock"></i>
+              <span>7 mins read</span>
+            </div>
+          </div>
+        </div><div class="mw-blog-post-content-markdown"><p>Yeah, sure - there are already a few blog posts out there on this topic. But honestly, I (and I suspect many others) have never really taken the time to seriously dig into Data-Oriented Programming (DOP). It's one of those concepts that sounds familiar, maybe even obvious, but once you start applying it deliberately - especially in Java - it opens up a whole new way of thinking about code.</p>
+<p>While many of us have spent years coding in a good old object-oriented way (order.pay(), user.activate(), etc.), a new concept has been gaining traction lately: <strong>Data-Oriented Programming (DOP)</strong>. It might sound like functional-fanboy buzz or a new trend, but it's actually a very practical and clean way of thinking - especially with the features modern Java offers.</p>
+<p>In this article, we'll explore what DOP is all about, how it's different from OOP, and why Java (from version 21 onward) is a great fit for it. We'll walk through real examples (like payment methods), see how to model and process data, and briefly touch on how this approach fits with concepts like Domain, Entity, and DTO. Sound good? Let's go.</p>
+<h3>What is Data-Oriented Programming?</h3>
+<p>Put simply: <strong>Data is data, behavior is behavior!</strong><br>
+Unlike OOP, where data and behavior are bundled inside objects (the infamous &quot;fat object&quot;), DOP deliberately separates them. You model your domain as clean, immutable data structures and process these structures explicitly using functions or services.</p>
+<p>A quick example:</p>
+<pre><code class="language-java">// OOP-style:
+order.pay();
+
+// DOP-style:
+PaymentService.pay(order);
+</code></pre>
+<p>Why is this better? Because your data is transparent, easy to log, validate, test, and transform - and you avoid hidden side effects in opaque methods.</p>
+<h3>Core Principles of DOP</h3>
+<ul>
+<li><strong>Separate data from behavior</strong>: A data type should <em>only</em> describe the structure of the data.</li>
+<li><strong>Immutability is the default</strong>: No setters, no internal state changes, no surprises.</li>
+<li><strong>Behavior is externalized</strong>: Write pure functions or services that operate on the data.</li>
+<li><strong>Avoid inheritance</strong>: Favor composition and type hierarchies using sum types.</li>
+<li><strong>Data is open and transparent</strong>: Avoid hiding data behind getters/setters.</li>
+</ul>
+<p>With modern Java, this approach is now both clean and idiomatic.</p>
+<h3>Java's Toolkit for DOP: record, sealed interface, and Pattern Matching</h3>
+<h4><code>record</code></h4>
+<p>Since Java 16, records provide a concise way to declare immutable data classes:
+This creates a final class with the given fields, constructor, equals, hashCode, toString - all auto-generated and immutable.</p>
+<pre><code class="language-java">record User(String name, int age) {}
+</code></pre>
+<h4><code>sealed interface</code></h4>
+<p>Introduced in Java 17+, this allows you to restrict which classes implement an interface - perfect for modeling sum types:</p>
+<pre><code class="language-java">sealed interface PaymentMethod permits CreditCard, PayPal, Invoice {}
+</code></pre>
+<h4>Pattern Matching for <code>switch</code></h4>
+<p>Java 21 introduces exhaustive and type-safe pattern matching:
+This allows you to <em>deconstruct</em> and match on types in a readable and declarative way.
+What's especially nice here: if you've modeled all subtypes using a sealed interface, the compiler knows the type hierarchy is complete. That means you don't need a default case AND if you miss one, you'll get a compile error. It's safe and self-documenting.</p>
+<pre><code class="language-java">switch (payment) {
+  case CreditCard cc -&gt; System.out.println(&quot;Using card: &quot; + cc.cardNumber());
+  case PayPal pp -&gt; System.out.println(&quot;Paying via PayPal: &quot; + pp.email());
+  case Invoice inv -&gt; System.out.println(&quot;Invoice: &quot; + inv.invoiceNumber());
+}
+</code></pre>
+<h3>Real Example: Modeling Payment Methods</h3>
+<p>Let's say you're building a checkout system that supports multiple payment methods: credit card, PayPal, and invoice.
+Here's how you'd model this in a DOP style:</p>
+<pre><code class="language-java">sealed interface PaymentMethod permits CreditCard, PayPal, Invoice {}
+
+record CreditCard(String cardNumber, String holder, YearMonth expiry) implements PaymentMethod {}
+record PayPal(String email) implements PaymentMethod {}
+record Invoice(String invoiceNumber, LocalDate dueDate) implements PaymentMethod {}
+</code></pre>
+<p>Notice: no behavior, no setters, no base classes - just clean and focused data types.
+Now let's calculate fees depending on the payment method:</p>
+<pre><code class="language-java">class FeeCalculator {
+  public static BigDecimal calculate(PaymentMethod method, BigDecimal amount) {
+    return switch (method) {
+      case CreditCard cc -&gt; amount.multiply(BigDecimal.valueOf(0.025)); // 2.5%
+      case PayPal pp -&gt; amount.multiply(BigDecimal.valueOf(0.03));      // 3.0%
+      case Invoice inv -&gt; BigDecimal.ZERO;                              // no fee
+    };
+  }
+}
+</code></pre>
+<h3>Validating the Payment Method</h3>
+<p>Let's implement a validator that checks the validity of each method:</p>
+<pre><code class="language-java">class PaymentValidator {
+  public static List&lt;String&gt; validate(PaymentMethod method) {
+    return switch (method) {
+      case CreditCard cc -&gt; {
+        List&lt;String&gt; errors = new ArrayList&lt;&gt;();
+        if (cc.cardNumber().length() != 16) {
+          errors.add(&quot;Card number must be 16 digits&quot;);
+        }
+        if (cc.expiry().isBefore(YearMonth.now())) {
+          errors.add(&quot;Card is expired&quot;);
+        }
+        yield errors;
+      }
+      case PayPal pp -&gt; {
+        if (!pp.email().contains(&quot;@&quot;)) {
+          yield List.of(&quot;Invalid PayPal email address&quot;);
+        } else {
+          yield List.of();
+        }
+      }
+      case Invoice inv -&gt; {
+        if (inv.dueDate().isBefore(LocalDate.now())) {
+          yield List.of(&quot;Invoice due date is in the past&quot;);
+        } else {
+          yield List.of();
+        }
+      }
+    };
+  }
+}
+</code></pre>
+<h3>Putting It Together</h3>
+<pre><code class="language-java">class PaymentService {
+  public void processPayment(PaymentMethod method, BigDecimal amount) {
+    var errors = PaymentValidator.validate(method);
+    if (!errors.isEmpty()) {
+      throw new IllegalArgumentException(&quot;Invalid payment method: &quot; + String.join(&quot;, &quot;, errors));
+    }
+
+    var fee = FeeCalculator.calculate(method, amount);
+    System.out.printf(&quot;Processing %s payment. Fee: %.2f EUR%n&quot;,
+      method.getClass().getSimpleName(), fee);
+  }
+}
+</code></pre>
+<p>This is DOP in action: pure data, clean processing, and full transparency.</p>
+<h3>What About Domain, Entities, and DTOs?</h3>
+<p>In the context of Domain-Driven Design (DDD), Data-Oriented Programming can still play an important role—especially in the way we structure and isolate responsibilities:</p>
+<ul>
+<li><strong>DTOs:</strong> These are a perfect fit for record. They're designed to be flat, serializable data carriers for communication between layers or across service boundaries.</li>
+<li><strong>Domain Models:</strong> You can often model value objects or simpler domain types as records - especially when they are or have to be immutable and side-effect free. Core domain logic can then live in services or use cases.</li>
+<li><strong>Entities:</strong> This is where it gets trickier. While some lightweight entities might work as record, the moment you introduce persistence concerns-like JPA annotations, lazy loading, @OneToMany relations—record becomes a poor fit. Entities often require mutability, proxies, and a no-arg constructor, all of which conflict with the nature of record. In such cases, stick to traditional classes, but still try to separate logic and data where it makes sense.</li>
+</ul>
+<h3>Takeaways</h3>
+<ul>
+<li>DOP is not anti-OOP - it's a refinement for clearer thinking and modeling.</li>
+<li>With <code>record</code>, <code>sealed interface</code>, and Pattern Matching, Java is finally ready for this style.</li>
+<li>You'll get:
+<ul>
+<li>Transparent and predictable models</li>
+<li>Easier testing and logging</li>
+<li>Less coupling and fewer side effects</li>
+</ul>
+</li>
+<li>This approach can make your domain models sharper and your codebase easier to reason about.</li>
+</ul>
+<p>So next time you're writing a <code>User</code> class with 12 getters, setters, and 5 state mutation methods - take a breath and ask: <em>&quot;What if this were just a <code>record</code> and all logic lived in a service?&quot;</em></p>
+<p>You might like the result.</p>
+</div>
+
+        <div class="mw-blog-post-footer">
+          
+          <a
+            type="button"
+            onclick="location.href='/tired-of-auth-overkill-meet-idently-simple-stateless-deno-identity-gets-smarter/'"
+            class="mw-btn mw-blog-post-footer-button"
+            >&#9664;
+            <span>Previous Post</span>
+          </a>
+          
+          <a
+            type="button"
+            onclick="location.href='/'"
+            class="mw-btn mw-btn-primary"
+            >Back to Blog</a
+          >
+          
+          <button
+            type="button"
+            onclick="location.href='/my-digital-handshake-why-i-built-my-portfolio-page/'"
+            class="mw-btn mw-blog-post-footer-button next"
+          >
+            &#9654;
+            <span>Next Post</span>
+          </button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </main>
+
+    <footer class="mw-footer"><div class="mw-container">
+  <div class="mw-social-links">
+    
+    <a
+      href="https://www.linkedin.com/in/michael-wellner"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    
+    <a
+      href="https://github.com/m1well"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
+      ><i class="fab fa-github"></i
+    ></a>
+    
+    <a
+      href="https://www.xing.com/profile/Michael_Wellner5/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
+      ><i class="fab fa-xing"></i
+    ></a>
+    
+    <a
+      href="https://dev.to/m1well"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
+      ><i class="fab fa-dev"></i
+    ></a>
+    
+    <a
+      href="mailto:info@m1well.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn"
+      ><i class="fa fa-envelope"></i
+    ></a>
+    
+  </div>
+
+  <p class="mw-disclaimer">
+    <strong>Disclaimer</strong><br />
+    This is my personal developer portfolio website. All opinions, content, and
+    projects presented here are my own and do not represent the views or
+    positions of any current or previous employers.<br />
+    Built with
+    <a
+      href="https://www.11ty.dev"
+      target="_blank"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0"
+      >11ty</a
+    >
+    and my own CSS framework
+    <a
+      href="https://maverick-wave.m1well.com"
+      target="_blank"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0"
+      >MaverickWave</a
+    >.
+  </p>
+  <p class="mw-disclaimer">
+    <strong>Privacy Notice</strong><br />
+    This website is designed with privacy in mind. It does not use cookies,
+    tracking tools, or collect any personal data from visitors.<br />
+    A minimal counter increments a page view count on each visit - no IPs, no
+    user agents, no personal data are stored.
+  </p>
+  <p class="mw-disclaimer">
+    <strong>Credits</strong><br />
+    Hero background photo by
+    <a
+      href="https://unsplash.com/@windows"
+      target="_blank"
+      class="mw-link mw-btn-link mw-px-0 mw-py-0"
+      >Windows</a
+    >
+    on Unsplash.
+  </p>
+
+  <p class="mw-copyright">
+    &copy; <span>2025</span> Copyright
+    <a
+      href="https://m1well.com"
+      target="_blank"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0"
+      >m1well</a
+    >
+  </p>
+
+  <p class="mw-last-updated">Last updated: <span>2025-06-14</span></p>
+</div>
+</footer>
+  </body>
+  <script></script>
+  <script>
+    const isLocal = window.location.hostname === 'localhost';
+    if (!isLocal) {
+      const counterBaseRoute = 'https://vestigia.m1well.com/counters/m1well';
+      const pathname = window.location.pathname;
+      fetch(
+        `${counterBaseRoute}${pathname == '/' || pathname.startsWith('#') ? '/home' : pathname}`,
+        {
+          method: 'GET',
+          headers: {
+            'Vestigia-Header-Check': '938158',
+          },
+        }
+      ).catch((e) => {
+        console.warn('Counter failed', e);
+      });
+    }
+  </script>
+</html>
