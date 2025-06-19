@@ -1,0 +1,31 @@
+---
+import About from '@/components/About.astro';
+import Blog from '@/components/Blog.astro';
+import Home from '@/components/Home.astro';
+import Journey from '@/components/Journey.astro';
+import Projects from '@/components/Projects.astro';
+import Skills from '@/components/Skills.astro';
+import Base from '@/layouts/BaseLayout.astro';
+import { MAVERICK_WAVE_VERSION, PAGE_TITLE } from '@/util/constants';
+---
+
+<Base pageTitle={PAGE_TITLE} maverickWaveVersion={MAVERICK_WAVE_VERSION}>
+  <div class="mw-container">
+    <Home />
+  </div>
+  <div class="mw-container">
+    <About />
+  </div>
+  <div class="mw-container">
+    <Journey />
+  </div>
+  <div class="mw-container">
+    <Skills />
+  </div>
+  <div class="mw-container">
+    <Projects />
+  </div>
+  <div class="mw-container">
+    <Blog />
+  </div>
+</Base>
