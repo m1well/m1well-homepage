@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+type Props = {
+  prevPost: CollectionEntry<'blog'> | null;
+  nextPost: CollectionEntry<'blog'> | null;
+};
+
+const { prevPost, nextPost } = Astro.props;
+---
+
+<div class="mw-container mw-pt-3">
+  <div class="mw-button-bar mw-button-bar-nav">
+    {
+      prevPost && (
+        <a href={`/${prevPost.slug}`} class="mw-btn">
+          &#9664;
+          <span>Previous Post</span>
+        </a>
+      )
+    }
+    {!prevPost && <span />}
+    <a href="/" class="mw-btn">
+      <i class="fas fa-home"></i>
+      Back to Home
+    </a>
+    {
+      nextPost && (
+        <a href={`/${nextPost.slug}`} class="mw-btn">
+          <span>Next Post</span>
+          &#9654;
+        </a>
+      )
+    }
+    {!nextPost && <span />}
+  </div>
+</div>
