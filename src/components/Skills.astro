@@ -1,0 +1,67 @@
+---
+import { skills, stuff } from '@/data/technology';
+---
+
+<div class="mw-container">
+  <h2 class="mw-section-title">Skills & Experience</h2>
+
+  <div class="mw-grid-4">
+    {
+      skills.map(element => (
+        <div class="mw-card mw-card-content">
+          <div class="mw-card-body">
+            <h3 class="mw-card-title">{element.category}</h3>
+            {element.specific.map(spec => (
+              <div class="mw-progress-container">
+                <div class="mw-progress-barinfo">
+                  <span class="mw-progress-label">{spec.name}</span>
+                  <span class="mw-progress-value">{spec.proficiency}</span>
+                </div>
+                <div class="mw-progress-bar">
+                  <div class="mw-progress-fill" data-value={spec.barValue} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+    <div class="mw-card mw-card-content">
+      <div class="mw-card-body">
+        <h3 class="mw-card-title">OS</h3>
+        <p class="mw-card-subtitle">
+          I primarily develop on macOS for its great developer experience, but
+          prefer Linux (Ubuntu/Debian) for server and container workloads.
+        </p>
+        <p></p>
+        <div class="mw-tags mw-tags-secondary mw-tags-sm">
+          <span class="mw-tags-item">macOS</span>
+          <span class="mw-tags-item">Linux</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mw-card mw-card-content">
+      <div class="mw-card-body">
+        <h3 class="mw-card-title">Stuff</h3>
+        <p class="mw-card-subtitle">
+          Other stuff with which I have also been able to gain experience here
+          and there
+        </p>
+        <p></p>
+        <div class="mw-tags mw-tags-secondary mw-tags-sm">
+          {stuff.map(element => <span class="mw-tags-item">{element}</span>)}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mw-card mw-card-simple mw-mt-6 mw-mb-3 mw-py-2 mw-text-center">
+    You can also find my main stack on&nbsp;<a
+      class="mw-btn mw-btn-link"
+      href="https://stackshare.io/m1well/main-stack"
+      rel="noopener noreferrer"
+      target="_blank">stackshare</a
+    >
+  </div>
+</div>
