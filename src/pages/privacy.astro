@@ -1,0 +1,39 @@
+---
+import PrivacyCard from 'maverick-wave-astro/PrivacyCard.astro';
+
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import { SITE } from '@/config/site';
+import imprint from '@/content/imprint.json';
+import privacy from '@/content/privacy.json';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PAGE_TITLE } from '@/util/constants';
+---
+
+<BaseLayout
+  title={`${privacy.title} | ${PAGE_TITLE}`}
+  description="Privacy policy of m1well.com"
+  noIndex
+>
+  <Header slot="header" />
+
+  <div class="mw-content">
+    <section class="mw-section">
+      <div class="mw-container">
+        <div class="mw-section-head">
+          <h1 class="mw-section-head-title">{privacy.title}</h1>
+        </div>
+
+        <div class="mw-container-narrow">
+          <PrivacyCard
+            privacy={privacy}
+            address={imprint.address}
+            mail={{ href: `mailto:${SITE.email}`, text: SITE.email }}
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
