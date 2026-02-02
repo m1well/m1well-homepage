@@ -1,0 +1,20 @@
+---
+import Base from '@/layouts/BaseLayout.astro';
+import { PAGE_TITLE } from '@/util/constants';
+---
+
+<Base pageTitle={`Page not found | ${PAGE_TITLE}`}>
+  <div class="mw-content" style="height: 70dvh;">
+    <section id="404" class="mw-section">
+      <div class="mw-coming-soon mw-px-5 mw-mx-6">
+        <div class="mw-coming-soon-text">Page not found</div>
+      </div>
+      <div class="mw-d-flex mw-justify-center mw-mt-5">
+        <a href="/" class="mw-btn mw-btn-primary">
+          <i class="fas fa-home"></i>
+          Back to Home
+        </a>
+      </div>
+    </section>
+  </div>
+</Base>

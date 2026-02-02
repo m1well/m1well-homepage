@@ -1,0 +1,127 @@
+---
+import 'maverick-wave/maverick-wave.min.css';
+import '@/styles/main.scss';
+
+import Favicons from '@/components/Favicons.astro';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import { OG_IMAGE, SITE_DESCRIPTION } from '@/util/constants';
+
+type Props = {
+  pageTitle: string;
+  description?: string;
+  image?: string | null;
+  ogType?: 'website' | 'article';
+};
+
+const { pageTitle, description, image, ogType = 'website' } = Astro.props;
+
+const desc = description ? description : SITE_DESCRIPTION;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+// Every page needs a preview image - WhatsApp shows no card at all without one.
+// Only the default image gets width/height, a post's featuredImage has its own
+// dimensions and declaring the wrong ones is worse than declaring none.
+const ogImage = new URL(image ?? OG_IMAGE.path, Astro.site);
+const ogImageAlt = image ? pageTitle : OG_IMAGE.alt;
+const hasKnownOgImageSize = !image;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1"
+    />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta
+      name="format-detection"
+      content="telephone=no,email=no,address=no,date=no"
+    />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="m1well" />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    {
+      hasKnownOgImageSize && (
+        <Fragment>
+          <meta property="og:image:type" content={OG_IMAGE.type} />
+          <meta property="og:image:width" content={OG_IMAGE.width} />
+          <meta property="og:image:height" content={OG_IMAGE.height} />
+        </Fragment>
+      )
+    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    <Favicons />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="mw-header mw-localhost-indicator-activated">
+      <Header />
+    </header>
+    <main class="mw-main">
+      <slot />
+    </main>
+    <footer class="mw-footer">
+      <Footer />
+    </footer>
+
+    <script>
+      import 'maverick-wave/maverick-wave.min.js';
+    </script>
+    <script>
+      import { calculateMonthsSince } from '../util/calculations';
+      function updateActiveDurations() {
+        const durationElements = document.querySelectorAll('.m1-duration');
+        durationElements.forEach(element => {
+          const startDate = element.getAttribute('data-start-date');
+          if (startDate) {
+            const duration = calculateMonthsSince(startDate);
+            element.textContent = `(${duration})`;
+          }
+        });
+      }
+      updateActiveDurations();
+    </script>
+    <script>
+      const isLocal = window.location.hostname === 'localhost';
+      if (!isLocal) {
+        const counterBaseRoute =
+          'https://custos.m1well.com/vestigia/counter/up/m1well';
+        const pathname = window.location.pathname;
+        const parsed = pathname.endsWith('/')
+          ? pathname.slice(0, -1)
+          : pathname;
+        // Not a secret - this is a public static site, so the header only
+        // deters casual scripted hits against the counter endpoint.
+        fetch(
+          `${counterBaseRoute}${parsed == '/' || parsed.startsWith('#') ? '/home' : parsed}`,
+          {
+            method: 'GET',
+            headers: {
+              'Vestigia-Header-Check': '938158',
+            },
+          }
+        ).catch(e => {
+          console.warn('Counter failed', e);
+        });
+      }
+    </script>
+  </body>
+</html>

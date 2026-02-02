@@ -1,0 +1,31 @@
+---
+import About from '@/components/About.astro';
+import Blog from '@/components/Blog.astro';
+import Home from '@/components/Home.astro';
+import Journey from '@/components/Journey.astro';
+import Projects from '@/components/Projects.astro';
+import Skills from '@/components/Skills.astro';
+import Base from '@/layouts/BaseLayout.astro';
+import { SITE_TITLE } from '@/util/constants';
+---
+
+<Base pageTitle={SITE_TITLE}>
+  <section id="home" class="mw-section">
+    <Home />
+  </section>
+  <section id="about" class="mw-section">
+    <About />
+  </section>
+  <section id="journey" class="mw-section mw-section-alternate">
+    <Journey />
+  </section>
+  <section id="skills" class="mw-section">
+    <Skills />
+  </section>
+  <section id="projects" class="mw-section mw-section-alternate">
+    <Projects />
+  </section>
+  <section id="blog" class="mw-section">
+    <Blog />
+  </section>
+</Base>

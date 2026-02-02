@@ -1,0 +1,33 @@
+---
+import { getPublishedPosts } from '@/util/posts';
+
+const publishedPosts = await getPublishedPosts();
+---
+
+<div class="mw-container">
+  <h2 class="mw-section-title">Blog Posts</h2>
+  <div class="mw-grid-2">
+    {
+      publishedPosts.map(element => (
+        <div class="mw-card">
+          <div class="mw-card-body">
+            <h3 class="mw-card-title">{element.data.title}</h3>
+            <hr class="mw-card-title-divider" />
+            <p class="mw-card-text mw-my-1">{element.data.description}</p>
+            <div class="mw-card-footer">
+              <a href={`/${element.id}`} class="mw-btn mw-btn-primary">
+                <i class="fas fa-book-open" />
+                Read Post
+              </a>
+              <span class="mw-text-secondary">
+                Published:
+                <wbr />
+                {element.data.date.toISOString().split('T')[0]}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
