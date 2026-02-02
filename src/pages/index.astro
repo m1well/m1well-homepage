@@ -1,0 +1,37 @@
+---
+import About from '@/components/About.astro';
+import Blog from '@/components/Blog.astro';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import Home from '@/components/Home.astro';
+import Journey from '@/components/Journey.astro';
+import Projects from '@/components/Projects.astro';
+import Skills from '@/components/Skills.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/util/constants';
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <Header slot="header" />
+
+  <section id="home" class="mw-section">
+    <Home />
+  </section>
+  <section id="about" class="mw-section">
+    <About />
+  </section>
+  <section id="journey" class="mw-section mw-section-alternate">
+    <Journey />
+  </section>
+  <section id="skills" class="mw-section">
+    <Skills />
+  </section>
+  <section id="projects" class="mw-section mw-section-alternate">
+    <Projects />
+  </section>
+  <section id="blog" class="mw-section">
+    <Blog />
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

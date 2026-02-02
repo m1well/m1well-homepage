@@ -1,0 +1,139 @@
+---
+import { stacks } from '@/data/technology';
+import { AGE_AT_BUILD, BIRTH_DATE } from '@/util/constants';
+import { getImageSize } from '@/util/imageSize';
+
+const profilePhoto = getImageSize('/images/profile_photo.png');
+---
+
+<div class="mw-container">
+  <h2 class="mw-section-title">About Me</h2>
+
+  <div class="mw-grid-2 mw-my-2 mw-items-center mw-reveal-stagger">
+    <div>
+      <div class="mw-d-flex mw-justify-center mw-my-2">
+        <div class="mw-avatar mw-avatar-primary mw-avatar-xl">
+          <img
+            src="/images/profile_photo.png"
+            alt="Michael's profile photo"
+            width={profilePhoto?.width}
+            height={profilePhoto?.height}
+          />
+        </div>
+      </div>
+      <div class="mw-text-center">
+        <h3 class="mw-mb-1">Michael Wellner</h3>
+        <p class="mw-text-muted">- Fullstack Developer -</p>
+        <div
+          class="mw-d-flex mw-flex-wrap mw-items-center mw-justify-center mw-gap-2 mw-mt-2"
+        >
+          <span
+            class="mw-info mw-info-secondary mw-info-sm m1-age"
+            data-birth={BIRTH_DATE}>{AGE_AT_BUILD} years</span
+          >
+          <span class="mw-info mw-info-secondary mw-info-sm">Stuttgart</span>
+          <span class="mw-info mw-info-secondary mw-info-sm">B.Eng.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mw-grid-stack mw-gap-1 mw-text-pretty">
+      <p>
+        As a Fullstack Developer from Stuttgart, Germany, I build robust, modern
+        backend systems with Spring Boot using Java or Kotlin. My work spans
+        microservice architectures, clean domain models, event-driven
+        integrations, moduliths and high-quality REST APIs. On the frontend side
+        I deliver intuitive Angular applications with a strong focus on
+        usability and maintainability.
+      </p>
+      <p>
+        With more than a decade of hands-on experience, I have worked across
+        several industries (Automotive, E-Commerce, Finance, Healthcare) and
+        built scalable systems based on Postgres/MySQL, Docker, Kubernetes
+        (Dev), CI/CD pipelines and cloud-ready architecture patterns. I enjoy
+        solving complex technical problems - but always with the goal of
+        creating sustainable, long-term value.
+      </p>
+      <p>
+        At the moment most of my energy goes into AI-assisted development. I
+        work with Claude Code every day and treat it as part of the toolchain
+        rather than a gimmick: scaffolding services, refactoring older modules,
+        writing tests and reviewing changes. What I find most interesting is
+        where the limits are - which tasks an agent handles reliably, where a
+        developer still has to make the call, and how you keep architecture and
+        code quality intact when code is produced faster than it can be read.
+      </p>
+      <p>
+        A sabbatical in 2025 gave me the time for a proper tech refresh: Kotlin,
+        Spring Boot 4, Kafka and OpenTelemetry, along with a closer look at
+        Angular 19+ and Kubernetes, rounded off with the OpenTelemetry Certified
+        Associate (OTCA) certification. That habit has stuck - I still believe
+        in continuous learning, pragmatic engineering practices, and a developer
+        culture built on collaboration, code reviews and shared standards.
+      </p>
+      <p>
+        I thrive in environments where people support each other, knowledge
+        flows naturally, and modern tooling enables focused work. To maintain
+        high concentration and minimize context switching, I often use the
+        Pomodoro technique.
+      </p>
+      <blockquote class="mw-mt-3">
+        In the complex world of code, simplicity is the ultimate sophistication.
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="mw-grid-5 mw-mt-5 mw-reveal-stagger">
+    {
+      stacks.map(element => (
+        <div class="mw-card mw-card-stack mw-d-flex mw-flex-column">
+          <div class="mw-card-stack-header">
+            <div class="mw-card-stack-icon">
+              <i class={element.icon} />
+            </div>
+            <h5 class="mw-card-stack-title">{element.name}</h5>
+          </div>
+          <div class="mw-card-stack-body mw-d-flex mw-flex-1 mw-justify-between mw-text-pretty">
+            <p class="mw-card-stack-text">{element.text}</p>
+            {element.techs && (
+              <div class="mw-techstack-bucket mw-justify-center">
+                {element.techs.map(el => (
+                  <a
+                    href={`${el.link}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mw-techstack-item mw-techstack-item-sm"
+                    data-tooltip={el.name}
+                  >
+                    <img
+                      src={el.src}
+                      class="mw-techstack-logo"
+                      alt={el.name}
+                      {...(getImageSize(el.src) ?? {})}
+                    />
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import { calculateAge } from '../util/calculations';
+
+  function updateAge() {
+    const ageElements = document.querySelectorAll('.m1-age');
+    ageElements.forEach(element => {
+      const birthDate = element.getAttribute('data-birth');
+      if (birthDate) {
+        element.textContent = `${calculateAge(birthDate)} years`;
+      }
+    });
+  }
+
+  updateAge();
+</script>

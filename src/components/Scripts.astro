@@ -1,0 +1,42 @@
+---
+// Rendered by BaseLayout at the end of <body>.
+---
+
+<script>
+  import 'maverick-wave';
+</script>
+<script>
+  import { calculateMonthsSince } from '@/util/calculations';
+  function updateActiveDurations() {
+    const durationElements = document.querySelectorAll('.m1-duration');
+    durationElements.forEach(element => {
+      const startDate = element.getAttribute('data-start-date');
+      if (startDate) {
+        const duration = calculateMonthsSince(startDate);
+        element.textContent = `(${duration})`;
+      }
+    });
+  }
+  updateActiveDurations();
+</script>
+<script>
+  const isLocal = window.location.hostname === 'localhost';
+  if (!isLocal) {
+    const counterBaseRoute =
+      'https://custos.m1well.com/vestigia/counter/up/m1well';
+    const pathname = window.location.pathname;
+    const parsed = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+    // Not a secret - only deters casual scripted hits on the counter endpoint.
+    fetch(
+      `${counterBaseRoute}${parsed == '/' || parsed.startsWith('#') ? '/home' : parsed}`,
+      {
+        method: 'GET',
+        headers: {
+          'Vestigia-Header-Check': '938158',
+        },
+      }
+    ).catch(e => {
+      console.warn('Counter failed', e);
+    });
+  }
+</script>

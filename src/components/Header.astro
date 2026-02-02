@@ -1,0 +1,55 @@
+---
+import { sections } from '@/data/navigation';
+import { getImageSize } from '@/util/imageSize';
+
+const logo = getImageSize('/images/header_logo.svg');
+---
+
+<header class="mw-header mw-localhost-indicator-activated">
+  <div class="mw-container">
+    <div class="mw-logo">
+      <a href="/#home">
+        <img
+          src="/images/header_logo.svg"
+          alt="m1well"
+          width={logo?.width}
+          height={logo?.height}
+        />
+      </a>
+    </div>
+
+    <div class="mw-header-actions">
+      <!-- mw-navbar-medium collapses at lg (992px); without it the 5 links
+           crowd on a tablet. -->
+      <nav class="mw-navbar mw-navbar-medium">
+        <ul class="mw-navbar-list mw-gap-7">
+          {
+            sections.map(element => (
+              <li class="mw-navbar-item">
+                <a href={`/${element.href}`} class="mw-navbar-link">
+                  {element.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <button
+        class="mw-theme-toggle mw-ml-5"
+        type="button"
+        aria-label="Toggle dark mode"
+      >
+        <span class="mw-theme-toggle-slider">
+          <span class="mw-theme-toggle-icon">
+            <i class="fas fa-moon"></i>
+          </span>
+        </span>
+      </button>
+
+      <button class="mw-menu-btn" type="button" aria-label="Toggle navigation">
+        <span class="mw-menu-btn-burger"></span>
+      </button>
+    </div>
+  </div>
+</header>

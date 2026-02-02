@@ -1,0 +1,98 @@
+---
+import '@/styles/main.scss';
+
+import Favicons from '@/components/Favicons.astro';
+import Scripts from '@/components/Scripts.astro';
+import { OG_IMAGE, SITE } from '@/config/site';
+
+type Props = {
+  title: string;
+  description: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string | null;
+  noIndex?: boolean;
+};
+
+const {
+  title,
+  description,
+  ogType = 'website',
+  ogImage = null,
+  noIndex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+// Only the default image has known dimensions, so only it gets width/height.
+const previewImage = new URL(ogImage ?? OG_IMAGE.path, Astro.site);
+const previewImageAlt = ogImage ? title : OG_IMAGE.alt;
+const hasKnownImageSize = !ogImage;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1"
+    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    <meta
+      name="format-detection"
+      content="telephone=no,email=no,address=no,date=no"
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:image" content={previewImage} />
+    <meta property="og:image:alt" content={previewImageAlt} />
+    {
+      hasKnownImageSize && (
+        <Fragment>
+          <meta property="og:image:type" content={OG_IMAGE.type} />
+          <meta property="og:image:width" content={OG_IMAGE.width} />
+          <meta property="og:image:height" content={OG_IMAGE.height} />
+        </Fragment>
+      )
+    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={previewImage} />
+    <meta name="twitter:image:alt" content={previewImageAlt} />
+    <Favicons />
+    {
+      SITE.preloadFonts.map(font => (
+        <link
+          rel="preload"
+          href={font}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      ))
+    }
+    {
+      SITE.externalStylesheets.map(href => (
+        <link rel="stylesheet" href={href} />
+      ))
+    }
+  </head>
+
+  <body class={SITE.bodyClass || undefined}>
+    <a href="#main" class="mw-skip-link">Skip to content</a>
+    <slot name="header" />
+    <main id="main" class="mw-main" tabindex="-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+    <Scripts />
+  </body>
+</html>

@@ -1,0 +1,20 @@
+// Must stay first: the overrides below only redefine --mw-* on :root and lose
+// the cascade otherwise. `none` keeps the framework's stock hero URL out of
+// the built CSS.
+@use 'maverick-wave/src/scss/main' with (
+  $hero-filter-light: brightness(1.2),
+  $mw-hero-image: none
+);
+
+@use 'customs';
+
+// Generated from the Font Awesome npm package, see tools/icons.mjs.
+@use 'icons';
+
+@forward 'fonts';
+
+:root {
+  --mw-font-family-base: 'Titillium Web', sans-serif;
+  --mw-font-family-heading: 'Titillium Web', sans-serif;
+  --mw-hero-background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=2070&q=80');
+}
