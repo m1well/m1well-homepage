@@ -1,0 +1,77 @@
+---
+import { socialLinks } from '@/data/navigation';
+import { CURRENT_DATE, CURRENT_YEAR } from '@/util/constants';
+---
+
+<div class="mw-container">
+  <div class:list={['mw-social-links', { 'mod-wrap': socialLinks.length > 5 }]}>
+    {
+      socialLinks.map(element => (
+        <a
+          href={element.href}
+          data-tooltip={element.title}
+          target={element.external ? '_blank' : undefined}
+          rel={element.external ? 'noopener noreferrer' : undefined}
+          class="mw-btn"
+        >
+          {element.svg ? (
+            <span class="mw-custom-icon" set:html={element.svg} />
+          ) : (
+            <i class={element.icon} />
+          )}
+        </a>
+      ))
+    }
+  </div>
+
+  <p class="mw-disclaimer">
+    <strong>Disclaimer</strong><br />
+    This is my personal developer portfolio website. All opinions, content, and projects
+    presented here are my own and do not represent the views or positions of any current
+    or previous employers.<br />
+    Built with
+    <a
+      href="https://www.astro.build"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0">Astro</a
+    >
+    and my own CSS framework
+    <a
+      href="https://maverick-wave.m1well.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0">MaverickWave</a
+    >.
+  </p>
+  <p class="mw-disclaimer">
+    <strong>Privacy Notice</strong><br />
+    This website is designed with privacy in mind. It does not use cookies, tracking
+    tools, or collect any personal data from visitors.<br />
+    A minimal counter increments a page view count on each visit - no IPs, no user
+    agents, no personal data are stored.
+  </p>
+  <p class="mw-disclaimer">
+    <strong>Credits</strong><br />
+    Hero background photo by
+    <a
+      href="https://unsplash.com/@windows"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-link mw-btn-link mw-px-0 mw-py-0">Windows</a
+    >
+    on Unsplash.
+  </p>
+
+  <p class="mw-copyright">
+    &copy; <span>{CURRENT_YEAR}</span> Copyright
+    <a
+      href="https://m1well.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-btn mw-btn-link mw-px-0 mw-py-0">m1well</a
+    >
+  </p>
+
+  <p class="mw-last-updated">Last updated: <span>{CURRENT_DATE}</span></p>
+</div>

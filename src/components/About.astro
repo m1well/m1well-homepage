@@ -1,0 +1,103 @@
+---
+import { stacks } from '@/data/technology';
+import { AGE } from '@/util/constants';
+---
+
+<div class="mw-container">
+  <h2 class="mw-section-title">About Me</h2>
+
+  <div class="mw-grid-2 mw-my-2 mw-items-center">
+    <div>
+      <div class="mw-avatar-container mw-d-flex mw-justify-center mw-my-2">
+        <div class="mw-avatar mw-avatar-primary mw-avatar-xl">
+          <img src="/images/profile_photo.png" alt="Michael's profile photo" />
+        </div>
+      </div>
+      <div class="mw-text-center">
+        <h3 class="mw-mb-1">Michael Wellner</h3>
+        <p class="mw-text-muted">- Fullstack Developer -</p>
+        <p></p>
+        <div
+          class="mw-d-flex mw-flex-wrap mw-items-center mw-justify-center mw-gap-2"
+        >
+          <span class="mw-info mw-info-secondary mw-info-sm">{AGE} years</span>
+          <span class="mw-info mw-info-secondary mw-info-sm">Stuttgart</span>
+          <span class="mw-info mw-info-secondary mw-info-sm">B.Eng.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mw-grid-stack mw-gap-1">
+      <p>
+        As a Fullstack Developer from Stuttgart, Germany - now in my late 30s -
+        I specialize in building robust, modern backend systems with Spring Boot
+        using Java or Kotlin. My work spans microservice architectures, clean
+        domain models, event‑driven integrations and high‑quality REST APIs. On
+        the frontend side I deliver intuitive Angular applications with a strong
+        focus on usability and maintainability.
+      </p>
+      <p>
+        With more than a decade of hands‑on experience, I have worked across
+        several industries (Automotive, E‑Commerce, Finance, Healthcare) and
+        built scalable systems based on Postgres/MySQL, Docker, Kubernetes
+        (Dev), CI/CD pipelines and cloud‑ready architecture patterns. I enjoy
+        solving complex technical problems - but always with the goal of
+        creating sustainable, long‑term value.
+      </p>
+      <p>
+        Recently, I expanded my skillset with Kotlin, Spring Boot 4, Kafka, and
+        OpenTelemetry while refreshing my knowledge in Angular 19+ and
+        Kubernetes, and have successfully obtained the OpenTelemetry Certified
+        Associate (OTCA) certification. I strongly believe in continuous
+        learning, pragmatic engineering practices, and a developer culture built
+        on collaboration, code reviews and shared standards.
+      </p>
+      <p>
+        I thrive in environments where people support each other, knowledge
+        flows naturally, and modern tooling enables focused work. To maintain
+        high concentration and minimize context switching, I often use the
+        Pomodoro technique.
+      </p>
+      <blockquote class="mw-mt-3">
+        In the complex world of code, simplicity is the ultimate sophistication.
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="mw-grid-5 mw-mt-5">
+    {
+      stacks.map(element => (
+        <div class="mw-card mw-card-stack mw-d-flex mw-flex-column">
+          <div class="mw-card-stack-header">
+            <div class="mw-card-stack-icon">
+              <i class={element.icon} />
+            </div>
+            <h5 class="mw-card-stack-title">{element.name}</h5>
+          </div>
+          <div class="mw-card-stack-body mw-d-flex mw-flex-1 mw-justify-between">
+            <p class="mw-card-stack-text">{element.text}</p>
+            {element.techs && (
+              <div class="mw-techstack-bucket mw-justify-center">
+                {element.techs.map(el => (
+                  <a
+                    href={`${el.link}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mw-techstack-item mw-techstack-item-sm"
+                    data-tooltip={el.name}
+                  >
+                    <img
+                      src={el.src}
+                      class="mw-techstack-logo"
+                      alt="{el.name}"
+                    />
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
