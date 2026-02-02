@@ -1,0 +1,22 @@
+{
+  "title": "Legal Notice",
+  "address": {
+    "name": "Michael Wellner",
+    "street": "Unterboihinger Str. 29",
+    "city": "73240 Wendlingen, Germany"
+  },
+  "addressNotes": {
+    "noVisitors": false,
+    "noParcels": true
+  },
+  "sections": [],
+  "vat": "",
+  "responsible": "Michael Wellner, address as above.",
+  "dispute": "I am neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.",
+  "credits": [
+    "Icons: Font Awesome Free, CC BY 4.0.",
+    "Font: Titillium Web, SIL Open Font License.",
+    "Photo behind the intro: Windows on Unsplash, Unsplash License.",
+    "Icons and font are served from this site, the photo comes from Unsplash."
+  ]
+}

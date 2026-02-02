@@ -1,0 +1,23 @@
+---
+import '@/styles/main.scss';
+
+import Frame from 'maverick-wave-astro/BaseLayout.astro';
+
+import Scripts from '@/components/Scripts.astro';
+
+type Props = {
+  title: string;
+  description: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string | null;
+  noIndex?: boolean;
+};
+---
+
+<Frame {...Astro.props}>
+  <slot name="head" slot="head" />
+  <slot name="header" slot="header" />
+  <slot />
+  <slot name="footer" slot="footer" />
+  <Scripts slot="scripts" />
+</Frame>

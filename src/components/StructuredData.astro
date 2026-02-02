@@ -1,0 +1,70 @@
+---
+// JSON-LD from the same data as the visible page: the profiles from the
+// footer, the skills from the stacks, one BlogPosting per article.
+import type { CollectionEntry } from 'astro:content';
+import JsonLd from 'maverick-wave-astro/JsonLd.astro';
+
+import { SITE } from '@/config/site';
+import { socialLinks } from '@/data/navigation';
+import { stacks } from '@/data/technology';
+
+type Props = {
+  post?: CollectionEntry<'blog'>;
+};
+
+const { post } = Astro.props;
+
+const url = (path: string) => new URL(path, Astro.site).href;
+const startPage = url('/');
+const personId = url('/#michael');
+const websiteId = url('/#website');
+const pageUrl = url(Astro.url.pathname);
+
+const person = {
+  '@type': 'Person',
+  '@id': personId,
+  name: 'Michael Wellner',
+  alternateName: SITE.name,
+  jobTitle: 'Fullstack Developer',
+  url: startPage,
+  image: url('/images/profile_photo.jpg'),
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Stuttgart',
+    addressCountry: 'DE',
+  },
+  sameAs: socialLinks
+    .filter(link => link.type !== 'mail')
+    .map(link => link.href),
+  knowsAbout: stacks.flatMap(stack => stack.techs ?? []).map(tech => tech.name),
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: startPage,
+  name: SITE.name,
+  inLanguage: SITE.lang,
+  publisher: { '@id': personId },
+};
+
+const article = post && {
+  '@type': 'BlogPosting',
+  '@id': `${pageUrl}#post`,
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString().slice(0, 10),
+  inLanguage: SITE.lang,
+  author: { '@id': personId },
+  mainEntityOfPage: pageUrl,
+  isPartOf: { '@id': websiteId },
+  ...(post.data.featuredImage && { image: url(post.data.featuredImage) }),
+};
+
+const data = {
+  '@context': 'https://schema.org',
+  '@graph': [website, person, ...(article ? [article] : [])],
+};
+---
+
+<JsonLd data={data} />
