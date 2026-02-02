@@ -1,0 +1,48 @@
+---
+import Base from 'maverick-wave-astro/Footer.astro';
+
+import { socialLinks } from '@/data/navigation';
+import { CURRENT_DATE } from '@/util/constants';
+---
+
+<Base
+  social={socialLinks}
+  notes={[
+    {
+      title: 'Disclaimer',
+      text: 'This is my personal developer portfolio website. All opinions, content, and projects presented here are my own and do not represent the views or positions of any current or previous employers.',
+    },
+  ]}
+  builtWith={{ title: 'Built with', joiner: 'and my own CSS framework' }}
+  legal={{
+    title: 'Legal',
+    imprint: 'Legal Notice',
+    privacy: 'Privacy Policy',
+    imprintHref: '/legal-notice',
+    privacyHref: '/privacy',
+  }}
+  owner="m1well"
+  ownerHref="https://m1well.com"
+  lastUpdated={{ label: 'Last updated', date: CURRENT_DATE }}
+>
+  <p slot="notes" class="mw-disclaimer">
+    <strong>Privacy at a glance</strong><br />
+    This website is designed with privacy in mind. It uses no cookies and no tracking
+    tools, and stores no personal data about visitors. The only thing kept in your
+    browser is your light or dark theme choice.<br />
+    A minimal counter increments a page view count on each visit - the request goes
+    to my own counter service, which stores nothing but the path and the time: no
+    IPs, no user agents, no personal data.
+  </p>
+  <p slot="credits" class="mw-disclaimer">
+    <strong>Credits</strong><br />
+    Hero background photo by{' '}
+    <a
+      href="https://unsplash.com/@windows"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mw-link">Windows</a
+    >{' '}
+    on Unsplash.
+  </p>
+</Base>

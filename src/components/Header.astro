@@ -1,0 +1,34 @@
+---
+import Base from 'maverick-wave-astro/Header.astro';
+import { imageSize } from 'maverick-wave-astro/image-size';
+import ThemeToggle from 'maverick-wave-astro/ThemeToggle.astro';
+
+import { navigation } from '@/data/navigation';
+
+interface Props {
+  reveal?: boolean;
+}
+
+const logo = imageSize('/images/header_logo.png');
+
+// navSize "medium" collapses at lg (992px); without it the 5 links crowd on a
+// tablet.
+---
+
+<Base
+  {...Astro.props}
+  class="mw-localhost-indicator-activated"
+  navigation={navigation}
+  navLabel="Sections of this page"
+  menuLabel="Toggle navigation"
+>
+  <a slot="brand" href="/#home">
+    <img
+      src="/images/header_logo.png"
+      alt="m1well"
+      width={logo?.width}
+      height={logo?.height}
+    />
+  </a>
+  <ThemeToggle slot="actions" label="Toggle light and dark theme" />
+</Base>
