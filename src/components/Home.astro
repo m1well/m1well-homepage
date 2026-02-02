@@ -1,0 +1,25 @@
+---
+import Hero from 'maverick-wave-astro/Hero.astro';
+---
+
+<Hero
+  id="home"
+  variant="fade"
+  titleStart="Hi, I'm"
+  titleAccent="Michael"
+  accent="primary"
+  subtitle="Fullstack Developer"
+  text="Over a decade of experience in software development & consulting - creating clean, maintainable fullstack solutions with Spring Boot & Angular"
+  scrollHint={{
+    href: '#about',
+    label: 'More',
+    ariaLabel: 'Continue to about me',
+  }}
+  classes={{
+    title: 'mw-mb-2 mw-text-balance',
+    paragraph: 'mw-text-md mw-text-pretty',
+  }}
+>
+  <div slot="media" class="mw-parallax-media"></div>
+  <i slot="scroll-icon" class="fas fa-arrow-down"></i>
+</Hero>
