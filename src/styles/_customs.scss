@@ -1,0 +1,17 @@
+@use 'maverick-wave/src/scss/abstracts' as *;
+
+.m1-profile {
+  @include media-up('md') {
+    position: sticky;
+    top: calc(var(--mw-header-height) + #{spacing('6')});
+  }
+}
+
+// Art. 21(4) GDPR wants the right to object presented separately.
+.m1-legal-emphasis {
+  padding: spacing('4') spacing('5');
+  border-left: 3px solid var(--mw-secondary-text-color);
+  border-radius: 0 5px 5px 0;
+  background: color-mix(in srgb, var(--mw-secondary-color) 6%, transparent);
+  font-weight: 500;
+}

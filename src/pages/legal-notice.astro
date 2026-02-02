@@ -1,0 +1,37 @@
+---
+import ImprintCard from 'maverick-wave-astro/ImprintCard.astro';
+
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import { SITE } from '@/config/site';
+import imprint from '@/content/imprint.json';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PAGE_TITLE } from '@/util/constants';
+---
+
+<BaseLayout
+  title={`${imprint.title} | ${PAGE_TITLE}`}
+  description="Legal notice of m1well.com"
+  noIndex
+>
+  <Header slot="header" />
+
+  <div class="mw-content">
+    <section class="mw-section">
+      <div class="mw-container">
+        <div class="mw-section-head">
+          <h1 class="mw-section-head-title">{imprint.title}</h1>
+        </div>
+
+        <div class="mw-container-narrow">
+          <ImprintCard
+            imprint={imprint}
+            mail={{ href: `mailto:${SITE.email}`, text: SITE.email }}
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
