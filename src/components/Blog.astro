@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const publishedPosts = allPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<div class="mw-container">
+  <h2 class="mw-section-title">Blog Posts</h2>
+  <div class="mw-grid-2">
+    {
+      publishedPosts.map(element => (
+        <div class="mw-card mw-card-content">
+          <div class="mw-card-body">
+            <h3 class="mw-card-title">{element.data.title}</h3>
+            <hr class="mw-card-title-divider" />
+            <p class="mw-card-text mw-my-1">{element.data.description}</p>
+            <div class="mw-card-footer">
+              <a href={element.slug} class="mw-btn mw-btn-primary mw-btn-icon">
+                <i class="fas fa-book-open" />
+                Read Post
+              </a>
+              <span class="mw-text-secondary">
+                Published:
+                <wbr />
+                {element.data.date.toISOString().split('T')[0]}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
