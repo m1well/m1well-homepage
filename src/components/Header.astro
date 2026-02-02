@@ -1,0 +1,70 @@
+---
+import { themeSetup } from '@/config/theme-setup';
+import { sections } from '@/data/navigation';
+import { getImageSize } from '@/util/imageSize';
+
+interface Props {
+  parallax?: boolean;
+}
+
+const { parallax = false } = Astro.props;
+const logo = getImageSize('/images/header_logo.png');
+---
+
+<header
+  class:list={[
+    'mw-header mw-localhost-indicator-activated',
+    parallax && themeSetup.keeps('mw-header-reveal') && 'mw-header-reveal',
+  ]}
+>
+  <div class="mw-container">
+    <div class="mw-logo">
+      <a href="/#home">
+        <img
+          src="/images/header_logo.png"
+          alt="m1well"
+          width={logo?.width}
+          height={logo?.height}
+        />
+      </a>
+    </div>
+
+    <div class="mw-header-actions">
+      <!-- mw-navbar-medium collapses at lg (992px); without it the 5 links
+           crowd on a tablet. -->
+      <nav class="mw-navbar mw-navbar-medium">
+        <ul class="mw-navbar-list">
+          {
+            sections.map(element => (
+              <li class="mw-navbar-item">
+                <a href={`/${element.href}`} class="mw-navbar-link">
+                  {element.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <button
+        type="button"
+        class="mw-theme-toggle mw-header-keep mw-ml-5"
+        aria-label="Toggle light and dark theme"
+      >
+        <div class="mw-theme-toggle-slider">
+          <div class="mw-theme-toggle-icon">
+            <i class="fas fa-moon"></i>
+          </div>
+        </div>
+      </button>
+
+      <button
+        class="mw-menu-btn mw-header-keep"
+        type="button"
+        aria-label="Toggle navigation"
+      >
+        <span class="mw-menu-btn-burger"></span>
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,48 @@
+@use 'maverick-wave/src/scss/abstracts' as *;
+
+// Der Frameworkwert ist ein Boden in :where() und verliert sich auf einer
+// seitenbreiten Kante. Feste Werte wie im Framework: der Schatten faellt auf
+// das Hero-Foto, nicht auf eine Theme-Flaeche, wo elevation() greifen wuerde.
+:is(.mw-parallax-sticky, .mw-parallax-slow) + *:not(.mw-parallax-sticky) {
+  box-shadow:
+    0 -8px 18px rgb(0 0 0 / 55%),
+    0 -28px 60px rgb(0 0 0 / 38%);
+}
+
+.m1-custom-icon {
+  display: inline-flex;
+  line-height: 1;
+  svg {
+    width: 1.3em;
+    height: 1.4em;
+    path {
+      fill: var(--mw-text-color);
+    }
+  }
+}
+
+.mw-social-links {
+  a:hover {
+    .m1-custom-icon svg path {
+      fill: var(--mw-accent-text-color);
+    }
+  }
+}
+
+.m1-legal {
+  max-width: 80%;
+  margin-inline: auto;
+
+  @include media-down('sm') {
+    max-width: 95%;
+  }
+}
+
+// Art. 21(4) GDPR wants the right to object presented separately.
+.m1-legal-emphasis {
+  padding: spacing('4') spacing('5');
+  border-left: 3px solid var(--mw-secondary-text-color);
+  border-radius: 0 5px 5px 0;
+  background: color-mix(in srgb, var(--mw-secondary-color) 6%, transparent);
+  font-weight: 500;
+}

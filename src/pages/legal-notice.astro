@@ -1,0 +1,55 @@
+---
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PAGE_TITLE } from '@/util/constants';
+---
+
+<BaseLayout
+  title={`Legal Notice | ${PAGE_TITLE}`}
+  description="Legal notice of m1well.com"
+  noIndex
+>
+  <Header slot="header" />
+
+  <div class="mw-content">
+    <section class="mw-section">
+      <div class="mw-container mw-mt-7">
+        <div class="mw-section-head">
+          <h1 class="mw-section-head-title">Legal Notice</h1>
+        </div>
+
+        <div class="mw-card mw-card-simple mw-prose m1-legal">
+          <h2>Information according to Section 5 DDG</h2>
+          <p>
+            Michael Wellner<br />
+            Unterboihinger Str. 29<br />
+            73240 Wendlingen<br />
+            Germany
+          </p>
+
+          <h2>Contact</h2>
+          <p><a href="mailto:hallo@formatwerke.de">hallo@formatwerke.de</a></p>
+
+          <h2>Responsible for content according to Section 18(2) MStV</h2>
+          <p>Michael Wellner, address as above.</p>
+
+          <h2>Consumer dispute resolution</h2>
+          <p>
+            I am neither willing nor obliged to take part in dispute resolution
+            proceedings before a consumer arbitration board.
+          </p>
+
+          <h2>Licenses and credits</h2>
+          <p>
+            Icons: Font Awesome Free, CC BY 4.0. Font: Titillium Web, SIL Open
+            Font License. Both are served from this site. Photo behind the intro
+            by Windows on Unsplash, Unsplash License.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

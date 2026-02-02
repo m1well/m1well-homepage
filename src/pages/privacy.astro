@@ -1,0 +1,192 @@
+---
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PAGE_TITLE } from '@/util/constants';
+---
+
+<BaseLayout
+  title={`Privacy Policy | ${PAGE_TITLE}`}
+  description="Privacy policy of m1well.com"
+  noIndex
+>
+  <Header slot="header" />
+
+  <div class="mw-content">
+    <section class="mw-section">
+      <div class="mw-container mw-mt-7">
+        <div class="mw-section-head">
+          <h1 class="mw-section-head-title">Privacy Policy</h1>
+        </div>
+
+        <div class="mw-alert mw-alert-info m1-legal">
+          <div class="mw-alert-content">
+            <p class="mw-alert-title">In short</p>
+            <p>
+              This site sets no cookies, does not track you and has no contact
+              form. It is a static site served by GitHub Pages. Besides the page
+              itself, your browser makes two requests: one to Unsplash for the
+              photo behind the intro, one to my own view counter, which keeps
+              nothing but the page and the time. The only thing stored in your
+              browser is your light or dark theme choice, and only if you use
+              the toggle.
+            </p>
+          </div>
+        </div>
+
+        <div class="mw-card mw-card-simple mw-prose m1-legal">
+          <h2>1. Controller</h2>
+          <p>
+            The controller responsible for data processing on this website is:
+          </p>
+          <p>
+            Michael Wellner<br />
+            Unterboihinger Str. 29<br />
+            73240 Wendlingen<br />
+            Germany
+          </p>
+          <p>
+            E-mail:{' '}
+            <a href="mailto:hallo@formatwerke.de">hallo@formatwerke.de</a>
+          </p>
+
+          <h2>2. Hosting on GitHub Pages</h2>
+          <p>
+            This site is hosted by GitHub, Inc., 88 Colin P. Kelly Jr. Street,
+            San Francisco, CA 94107, USA, on its GitHub Pages service. When you
+            open a page, GitHub's servers receive what your browser sends with
+            every request: your IP address, browser type and version, operating
+            system, the page requested, date and time of the request and the
+            referring page. GitHub logs the IP address of every visitor for
+            security purposes. I have no access to those logs and no influence
+            on them. Details are in
+            <a
+              href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+              target="_blank"
+              rel="noopener noreferrer">GitHub's privacy statement</a
+            >.
+          </p>
+          <p>
+            GitHub, Inc. is certified under the EU-U.S. Data Privacy Framework,
+            so the transfer to the USA rests on the adequacy decision of the
+            European Commission (Art. 45 GDPR). The legal basis for hosting the
+            site this way is my legitimate interest in a reliably and securely
+            delivered website (Art. 6(1)(f) GDPR).
+          </p>
+
+          <h2>3. The intro photo from Unsplash</h2>
+          <p>
+            The photo behind the intro section is loaded from
+            images.unsplash.com, a service of Unsplash, Inc., Montreal, Canada.
+            When your browser fetches it, Unsplash receives your IP address and
+            the usual request data. Canada is covered by an adequacy decision of
+            the European Commission (Art. 45 GDPR). The legal basis is my
+            legitimate interest in a pleasantly designed site (Art. 6(1)(f)
+            GDPR). Details are in
+            <a
+              href="https://unsplash.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer">Unsplash's privacy policy</a
+            >.
+          </p>
+
+          <h2>4. View counter</h2>
+          <p>
+            On every page view, a small script sends the path of the page to my
+            own counter service at custos.m1well.com, which runs on a server in
+            Germany. The counter stores only the path and the time of the
+            request: no cookie, no identifier, no IP address, no user agent.
+            Single views can therefore not be linked to a visit or to a person;
+            what remains is a total per page. The legal basis is my legitimate
+            interest in knowing which content is read at all (Art. 6(1)(f)
+            GDPR).
+          </p>
+
+          <h2>5. Cookies, browser storage and embedded content</h2>
+          <p>
+            This site sets no cookies and does not analyse your behaviour. If
+            you use the light/dark toggle in the header, your choice is saved in
+            your browser's local storage under the key mw-theme, so the site
+            opens in the same theme next time. That value stays on your device
+            and is never sent anywhere. Storing it is strictly necessary for the
+            function you asked for (Section 25(2) no. 2 TDDDG), so no consent is
+            needed and there is no cookie banner.
+          </p>
+          <p>
+            Fonts, icons, stylesheets and scripts are served from this site
+            itself. There are no tag managers, no analytics and no social media
+            plugins.
+          </p>
+          <p>
+            The links to LinkedIn, Xing, GitHub, daily.dev, dev.to and to the
+            projects listed here are ordinary links. Your browser only connects
+            to those sites once you click, and their privacy policies apply from
+            there.
+          </p>
+
+          <h2>6. Contact by e-mail</h2>
+          <p>
+            If you write me an e-mail, your message and the personal data it
+            contains, typically your name, your e-mail address and your request,
+            are stored and processed for the purpose of handling it. I do not
+            pass this data on without your consent.
+          </p>
+          <p>
+            The legal basis is Art. 6(1)(b) GDPR if your request relates to a
+            contract or its initiation. In all other cases it is my legitimate
+            interest in handling the requests addressed to me (Art. 6(1)(f)
+            GDPR). Your message stays with me until you ask me to delete it or
+            the purpose of storing it no longer applies. Statutory retention
+            periods remain unaffected.
+          </p>
+
+          <h2>7. Your rights</h2>
+          <p>
+            You have the right to obtain, free of charge, information about the
+            personal data I hold about you, its origin, its recipients and the
+            purpose of the processing (Art. 15 GDPR), and the right to
+            rectification (Art. 16 GDPR) and erasure (Art. 17 GDPR). You can
+            demand that processing be restricted (Art. 18 GDPR) and have the
+            right to data portability (Art. 20 GDPR). Consent you have given can
+            be withdrawn at any time with effect for the future.
+          </p>
+          <p class="m1-legal-emphasis">
+            Right to object: Where your data is processed on the basis of Art.
+            6(1)(e) or (f) GDPR, you have the right to object to that processing
+            at any time, on grounds relating to your particular situation (Art.
+            21 GDPR).
+          </p>
+          <p>
+            You also have the right to lodge a complaint with a supervisory
+            authority, in particular in the member state of your habitual
+            residence, your place of work or the place of the alleged
+            infringement. The authority responsible for me is the
+            Landesbeauftragte für den Datenschutz und die Informationsfreiheit
+            Baden-Württemberg.
+          </p>
+
+          <h2>8. Encryption</h2>
+          <p>
+            This site is delivered over TLS only. You can tell by the https://
+            at the start of the address bar and the lock symbol next to it. Data
+            you send to me cannot be read by third parties on the way.
+          </p>
+
+          <h2>9. Objection to unsolicited advertising</h2>
+          <p>
+            I object to the use of the contact details published in the legal
+            notice for sending advertising or information material that was not
+            expressly requested. I reserve the right to take legal action in the
+            event of unsolicited advertising, for instance spam e-mails.
+          </p>
+
+          <p class="mw-text-sm mw-text-muted mw-mt-8">
+            Last updated: September 2026
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

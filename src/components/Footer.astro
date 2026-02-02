@@ -1,0 +1,92 @@
+---
+import { socialLinks } from '@/data/navigation';
+import { CURRENT_DATE, CURRENT_YEAR } from '@/util/constants';
+---
+
+<footer class="mw-footer">
+  <div class="mw-container">
+    <div
+      class:list={['mw-social-links', { 'mod-wrap': socialLinks.length > 5 }]}
+    >
+      {
+        socialLinks.map(element => (
+          <a
+            href={element.href}
+            data-tooltip={element.title}
+            aria-label={element.title}
+            target={element.external ? '_blank' : undefined}
+            rel={element.external ? 'noopener noreferrer' : undefined}
+          >
+            {element.svg ? (
+              <span class="m1-custom-icon" set:html={element.svg} />
+            ) : (
+              <i class={element.icon} />
+            )}
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="mw-disclaimer">
+      <strong>Disclaimer</strong><br />
+      This is my personal developer portfolio website. All opinions, content, and
+      projects presented here are my own and do not represent the views or positions
+      of any current or previous employers.
+    </p>
+    <p class="mw-disclaimer">
+      <strong>Privacy at a glance</strong><br />
+      This website is designed with privacy in mind. It uses no cookies and no tracking
+      tools, and stores no personal data about visitors. The only thing kept in your
+      browser is your light or dark theme choice.<br />
+      A minimal counter increments a page view count on each visit - the request goes
+      to my own counter service, which stores nothing but the path and the time: no
+      IPs, no user agents, no personal data.
+    </p>
+    <p class="mw-disclaimer">
+      <strong>Built with</strong><br />
+      <a
+        href="https://astro.build"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mw-link">Astro</a
+      >{' '}
+      and my own CSS framework{' '}
+      <a
+        href="https://maverick-wave.m1well.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mw-link">MaverickWave</a
+      >.
+    </p>
+    <p class="mw-disclaimer">
+      <strong>Credits</strong><br />
+      Hero background photo by{' '}
+      <a
+        href="https://unsplash.com/@windows"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mw-link">Windows</a
+      >{' '}
+      on Unsplash.
+    </p>
+
+    <p class="mw-disclaimer">
+      <strong>Legal</strong><br />
+      <a class="mw-link" href="/legal-notice">Legal Notice</a>
+      <span class="mw-mx-3 mw-text-muted">&middot;</span>
+      <a class="mw-link" href="/privacy">Privacy Policy</a>
+    </p>
+
+    <p class="mw-copyright">
+      &copy; <span>{CURRENT_YEAR}</span> Copyright{' '}
+      <a
+        href="https://m1well.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mw-link">m1well</a
+      >
+    </p>
+
+    <p class="mw-last-updated">Last updated: <span>{CURRENT_DATE}</span></p>
+  </div>
+</footer>

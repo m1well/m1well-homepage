@@ -1,0 +1,42 @@
+// Must stay first: the overrides below only redefine --mw-* on :root and lose
+// the cascade otherwise. `none` keeps the framework's stock hero URL out of
+// the built CSS.
+@use 'maverick-wave/src/scss/main-lean' with (
+  $hero-filter-light: brightness(1.2),
+  $mw-hero-image: none
+);
+
+// Eine mw-*-Klasse ohne ihren Import hier bleibt still ungestylt.
+@use 'maverick-wave/src/scss/components/alerts';
+@use 'maverick-wave/src/scss/components/avatars';
+@use 'maverick-wave/src/scss/components/blog-post';
+@use 'maverick-wave/src/scss/components/button-bar';
+@use 'maverick-wave/src/scss/components/buttons';
+@use 'maverick-wave/src/scss/components/cards';
+@use 'maverick-wave/src/scss/components/coming-soon';
+@use 'maverick-wave/src/scss/components/info';
+@use 'maverick-wave/src/scss/components/links';
+@use 'maverick-wave/src/scss/components/localhost-indicator';
+@use 'maverick-wave/src/scss/components/progress';
+@use 'maverick-wave/src/scss/components/prose';
+@use 'maverick-wave/src/scss/components/tags';
+@use 'maverick-wave/src/scss/components/techstack-bucket';
+@use 'maverick-wave/src/scss/components/theme-toggle';
+@use 'maverick-wave/src/scss/components/timelines';
+
+@use 'customs';
+
+// Generated from the Font Awesome npm package, see tools/icons.mjs.
+@use 'icons';
+
+@forward 'fonts';
+
+:root {
+  --mw-font-family-base: 'Titillium Web', sans-serif;
+
+  // The framework's fluid regime, not the stepped default - more air between
+  // the sections on a desktop without the phone carrying it.
+  --mw-section-padding-block: var(--mw-section-padding-fluid);
+  --mw-font-family-heading: 'Titillium Web', sans-serif;
+  --mw-hero-background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=2070&q=80');
+}
