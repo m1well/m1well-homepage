@@ -1,0 +1,43 @@
+---
+import { jobs } from '@/data/journey';
+---
+
+<div class="mw-container">
+  <h2 class="mw-section-title">Professional Journey</h2>
+  <div class="mw-timeline-big">
+    {
+      jobs.map(element => (
+        <div class:list={['mw-timeline-big-step', { active: element.active }]}>
+          <div class="mw-timeline-big-date-container">
+            <div class="mw-timeline-big-date-main">{element.time}</div>
+            {element.timeRange && (
+              <div class="mw-timeline-big-date-sub">({element.timeRange})</div>
+            )}
+          </div>
+          <div class="mw-timeline-big-content">
+            <div class="mw-card mw-card-content">
+              <div class="mw-card-body">
+                <h3 class="mw-card-title">{element.title}</h3>
+                {element.company && (
+                  <p class="mw-card-subtitle">
+                    {element.company} | {element.location}
+                  </p>
+                )}
+                <p class="mw-card-text">{element.description}</p>
+              </div>
+            </div>
+            {element.events.map(evt => (
+              <div class="mw-timeline-big-event">
+                <span class="mw-timeline-big-event-date">{evt.date}</span>
+                <span
+                  class="mw-timeline-big-event-title"
+                  set:html={evt.title}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
