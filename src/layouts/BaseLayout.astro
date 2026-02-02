@@ -1,0 +1,90 @@
+---
+import '@/styles/main.scss';
+
+import Favicons from '@/components/Favicons.astro';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+
+type Props = {
+  pageTitle: string;
+  description?: string;
+  image?: string;
+  maverickWaveVersion: string;
+};
+
+const { pageTitle, description, image, maverickWaveVersion } = Astro.props;
+
+const desc = description ? description : 'm1well developer portfolio';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1"
+    />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    <meta
+      name="format-detection"
+      content="telephone=no,email=no,address=no,date=no"
+    />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="m1well" />
+    <meta property="og:description" content={desc} />
+    {image && <meta property="og:image" content={new URL(image, Astro.site)} />}
+    <meta
+      name="twitter:card"
+      content={image ? 'summary_large_image' : 'summary'}
+    />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={desc} />
+    <Favicons />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href={`https://cdn.jsdelivr.net/gh/m1well/maverick-wave@v${maverickWaveVersion}/maverick-wave.min.css`}
+    />
+    <script
+      is:inline
+      src={`https://cdn.jsdelivr.net/gh/m1well/maverick-wave@v${maverickWaveVersion}/maverick-wave.min.js`}
+      defer></script>
+  </head>
+
+  <body>
+    <header class="mw-header mw-localhost-indicator-activated">
+      <Header />
+    </header>
+    <main class="mw-main">
+      <slot />
+    </main>
+    <footer class="mw-footer">
+      <Footer />
+    </footer>
+  </body><script>
+    const isLocal = window.location.hostname === 'localhost';
+    if (!isLocal) {
+      const counterBaseRoute =
+        'https://custos.m1well.com/vestigia/counter/up/m1well';
+      const pathname = window.location.pathname;
+      const parsed = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+      fetch(
+        `${counterBaseRoute}${parsed == '/' || parsed.startsWith('#') ? '/home' : parsed}`,
+        {
+          method: 'GET',
+          headers: {
+            'Vestigia-Header-Check': '938158',
+          },
+        }
+      ).catch(e => {
+        console.warn('Counter failed', e);
+      });
+    }
+  </script>
+</html>

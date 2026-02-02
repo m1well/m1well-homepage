@@ -1,0 +1,8 @@
+@use 'customs';
+@forward 'fonts';
+
+:root {
+  --mw-font-family-base: 'Titillium Web', sans-serif;
+  --mw-font-family-heading: 'Titillium Web', sans-serif;
+  --mw-hero-background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?iauto=format&fit=crop&w=2070&q=80');
+}

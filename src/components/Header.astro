@@ -1,0 +1,39 @@
+---
+import { sections } from '@/data/navigation';
+---
+
+<div class="mw-container">
+  <div class="mw-logo">
+    <a href="/#home">
+      <img src="/images/header_logo.svg" alt="m1well" />
+    </a>
+  </div>
+
+  <div class="mw-header-actions">
+    <nav class="mw-navbar">
+      <ul class="mw-navbar-list mw-gap-7">
+        {
+          sections.map(element => (
+            <li class="mw-navbar-item">
+              <a href={`/${element.href}`} class="mw-navbar-link">
+                {element.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="mw-theme-toggle mw-ml-5">
+      <div class="mw-theme-toggle-slider">
+        <div class="mw-theme-toggle-icon">
+          <i class="fas fa-moon"></i>
+        </div>
+      </div>
+    </div>
+
+    <button class="mw-menu-btn" type="button">
+      <span class="mw-menu-btn-burger"></span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Props = {
+  post: CollectionEntry<'blog'>;
+};
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, date, author, featuredImage } = post.data;
+
+const readingTime = () => {
+  const wordsPerMinute = 190;
+  const text = post.body.replace(/(<([^>]+)>)/gi, '');
+  const words = text.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute) + 1;
+  return minutes === 1 ? '1 min read' : `${minutes} mins read`;
+};
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<div class="mw-container mw-mt-7">
+  <div class="mw-blog-post mw-py-5">
+    <h2 class="mw-blog-post-title">{title}</h2>
+
+    <div class="mw-blog-post-header">
+      <div class="mw-blog-post-header-icon">
+        <i class="fas fa-code"></i>
+      </div>
+      <div class="mw-blog-post-meta">
+        <div class="mw-blog-post-meta-item">
+          <i class="far fa-calendar"></i>
+          <span>{formattedDate}</span>
+        </div>
+        <div class="mw-blog-post-meta-item">
+          <i class="far fa-user"></i>
+          <span>By {author}</span>
+        </div>
+        <div class="mw-blog-post-meta-item">
+          <i class="far fa-clock"></i>
+          <span>{readingTime}</span>
+        </div>
+      </div>
+    </div>
+
+    {
+      featuredImage && (
+        <img
+          src={featuredImage}
+          alt="Blog post image"
+          class="mw-blog-post-featured-image"
+        />
+      )
+    }
+
+    <div class="mw-blog-post-content-markdown">
+      <Content />
+    </div>
+  </div>
+</div>

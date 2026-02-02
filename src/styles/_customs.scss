@@ -1,0 +1,19 @@
+.mw-custom-icon {
+  display: inline-flex;
+  line-height: 1;
+  svg {
+    width: 1.3em;
+    height: 1.4em;
+    path {
+      fill: var(--mw-text-color) !important;
+    }
+  }
+}
+
+.mw-social-links {
+  a:hover {
+    .mw-custom-icon svg path {
+      fill: var(--mw-primary-text-color) !important;
+    }
+  }
+}

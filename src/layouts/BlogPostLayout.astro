@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+import Post from '@/components/Post.astro';
+
+import PostNavi from '../components/PostNavi.astro';
+import BaseLayout from './BaseLayout.astro';
+
+type Props = {
+  maverickWaveVersion: string;
+  post: CollectionEntry<'blog'>;
+  prevPost: CollectionEntry<'blog'> | null;
+  nextPost: CollectionEntry<'blog'> | null;
+};
+
+const { maverickWaveVersion, post, prevPost, nextPost }: Props = Astro.props;
+
+const title = `${post.data.title} | m1well`;
+const description = post.data.description;
+const image = post.data.featuredImage;
+---
+
+<BaseLayout
+  pageTitle={title}
+  description={description}
+  image={image}
+  maverickWaveVersion={maverickWaveVersion}
+>
+  <div class="mw-content">
+    <section>
+      <PostNavi prevPost={prevPost} nextPost={nextPost} />
+      <Post post={post} />
+    </section>
+  </div>
+</BaseLayout>

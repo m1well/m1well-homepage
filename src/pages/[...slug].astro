@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+import { MAVERICK_WAVE_VERSION, PAGE_TITLE } from '@/util/constants';
+
+import BlogPostLayout from '../layouts/BlogPostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<'blog'>;
+
+const allPosts = await getCollection('blog');
+const published = allPosts
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const post = Astro.props;
+if (!post) {
+  return Astro.redirect('/404');
+}
+const idx = published.findIndex(p => p.slug === post.slug);
+
+const prevPost = idx > 0 ? published[idx - 1] : published[published.length - 1];
+const nextPost = idx < published.length - 1 ? published[idx + 1] : published[0];
+---
+
+<BlogPostLayout
+  pageTitle={PAGE_TITLE}
+  maverickWaveVersion={MAVERICK_WAVE_VERSION}
+  post={post}
+  prevPost={prevPost}
+  nextPost={nextPost}
+/>

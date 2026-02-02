@@ -1,0 +1,53 @@
+---
+import { projects } from '@/data/projects';
+---
+
+<div class="mw-container">
+  <h2 class="mw-section-title">Recent Projects</h2>
+
+  <div class="mw-grid-2">
+    {
+      projects.map(element => (
+        <div class="mw-card mw-card-content mw-card-lg">
+          {element.ribbon && (
+            <div class="mw-card-ribbon mw-card-addon-secondary">
+              {element.ribbon}
+            </div>
+          )}
+          <div class="mw-card-img-contain">
+            <img src={element.image} alt={element.imageAlt} />
+          </div>
+          <div class="mw-card-body">
+            <h3 class="mw-card-title">{element.title}</h3>
+            <hr class="mw-card-title-divider" />
+            <p class="mw-card-text mw-mb-1">{element.description1}</p>
+            <p class="mw-card-text mw-mb-3">{element.description2}</p>
+            {element.tags && element.tags.length > 0 && (
+              <div class="mw-tags mw-mt-2">
+                {element.tags.map(tag => (
+                  <span class="mw-tags-item">{tag}</span>
+                ))}
+              </div>
+            )}
+            <div class="mw-card-footer">
+              <a
+                href={`${element.githubLink}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mw-btn mw-btn-primary mw-btn-icon"
+              >
+                <i class="fab fa-github" />
+                View Code
+              </a>
+              <span class="mw-text-secondary">
+                Last updated:
+                <wbr />
+                {element.lastUpdated}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
