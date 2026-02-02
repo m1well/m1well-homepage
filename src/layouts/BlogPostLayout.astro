@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import Post from '@/components/Post.astro';
+import PostNavi from '@/components/PostNavi.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PAGE_TITLE } from '@/util/constants';
+
+type Props = {
+  post: CollectionEntry<'blog'>;
+  prevPost: CollectionEntry<'blog'> | null;
+  nextPost: CollectionEntry<'blog'> | null;
+};
+
+const { post, prevPost, nextPost }: Props = Astro.props;
+---
+
+<BaseLayout
+  title={`${post.data.title} | ${PAGE_TITLE}`}
+  description={post.data.description}
+  ogType="article"
+  ogImage={post.data.featuredImage}
+>
+  <Header slot="header" />
+
+  <div class="mw-content">
+    <section id="blog" class="mw-section">
+      <PostNavi prevPost={prevPost} nextPost={nextPost} />
+      <Post post={post} />
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

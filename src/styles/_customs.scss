@@ -1,0 +1,28 @@
+// Der Frameworkwert ist ein Boden in :where() und verliert sich auf einer
+// seitenbreiten Kante. Feste Werte wie im Framework: der Schatten faellt auf
+// das Hero-Foto, nicht auf eine Theme-Flaeche, wo elevation() greifen wuerde.
+:is(.mw-parallax-sticky, .mw-parallax-slow) + *:not(.mw-parallax-sticky) {
+  box-shadow:
+    0 -8px 18px rgb(0 0 0 / 55%),
+    0 -28px 60px rgb(0 0 0 / 38%);
+}
+
+.m1-custom-icon {
+  display: inline-flex;
+  line-height: 1;
+  svg {
+    width: 1.3em;
+    height: 1.4em;
+    path {
+      fill: var(--mw-text-color);
+    }
+  }
+}
+
+.mw-social-links {
+  a:hover {
+    .m1-custom-icon svg path {
+      fill: var(--mw-accent-text-color);
+    }
+  }
+}
